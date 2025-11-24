@@ -1,0 +1,216 @@
+import {
+  AGE_BAND_LABELS,
+  AGE_BANDS,
+  type AgeBand,
+  ageBandEnum,
+} from "@/models/age-band";
+import {
+  D_DIMER_CONCENTRATION_UNIT_CASES,
+  type DDimerConcentrationUnit,
+} from "@/models/d-dimer-concentration-unit";
+import {
+  FIBRINOGEN_CONCENTRATION_UNIT_CASES,
+  type FibrinogenConcentrationUnit,
+} from "@/models/fibrinogen-concentration-unit";
+import {
+  LACTATE_CONCENTRATION_UNIT_CASES,
+  type LactateConcentrationUnit,
+} from "@/models/lactate-conc";
+import {
+  MEAN_ARTERIAL_PRESSURE_UNIT_CASES,
+  type MeanArterialPressureUnit,
+} from "@/models/mean-arterial-pressure";
+import {
+  PLATELET_CONCENTRATION_UNIT_CASES,
+  type PlateletConcentrationUnit,
+} from "@/models/platelet-concentration-unit";
+import {
+  PUPIL_STATE_CASES,
+  PUPIL_STATE_LABELS,
+  type PupilState,
+} from "@/models/pupil-state";
+import {
+  RESPIRATORY_SUPPORT_CASES,
+  RESPIRATORY_SUPPORT_LABELS,
+  type RespiratorySupport,
+} from "@/models/respiratory-support";
+import z from "zod";
+
+export const STEPS = [
+  "ageBand",
+  "saturationOfPeripheralOxygen",
+  "fractionOfInspiredOxygen",
+  "respiratorySupport",
+  "vasoactiveMedicationCount",
+  "lactateConcentration",
+  "meanArterialPressure",
+  "plateletConcentration",
+  "internationalNormalisedRatio",
+  "dDimerConcentration",
+  "fibrinogenConcentration",
+  "glasgowComaScale",
+  "pupilState",
+] as const;
+
+export const stepEnum = z.enum(STEPS);
+
+export type Step = z.infer<typeof stepEnum>;
+
+export const DIMENSIONED_STEP_CASES = [
+  "meanArterialPressure",
+  "lactateConcentration",
+  "dDimerConcentration",
+  "fibrinogenConcentration",
+  "plateletConcentration",
+] as const;
+
+export type DimensionedStep = Extract<
+  Step,
+  (typeof DIMENSIONED_STEP_CASES)[number]
+>;
+
+export const DIMENSIONLESS_STEP_CASES = [
+  "saturationOfPeripheralOxygen",
+  "fractionOfInspiredOxygen",
+  "vasoactiveMedicationCount",
+  "glasgowComaScale",
+  "internationalNormalisedRatio",
+] as const;
+
+export type DimensionlessStep = Extract<
+  Step,
+  (typeof DIMENSIONLESS_STEP_CASES)[number]
+>;
+
+export const NUMERICAL_STEP_CASES = [
+  "saturationOfPeripheralOxygen",
+  "fractionOfInspiredOxygen",
+  "vasoactiveMedicationCount",
+  "lactateConcentration",
+  "meanArterialPressure",
+  "plateletConcentration",
+  "internationalNormalisedRatio",
+  "dDimerConcentration",
+  "fibrinogenConcentration",
+  "glasgowComaScale",
+] as const;
+
+export type NumericalStep = Extract<
+  Step,
+  (typeof NUMERICAL_STEP_CASES)[number]
+>;
+
+export const INTEGER_STEP_CASES = [
+  "vasoactiveMedicationCount",
+  "glasgowComaScale",
+] as const;
+
+export type IntegerStep = Extract<Step, (typeof INTEGER_STEP_CASES)[number]>;
+
+export const ENUM_STEP_CASES = [
+  "ageBand",
+  "respiratorySupport",
+  "pupilState",
+] as const;
+
+export type EnumStep = Extract<Step, (typeof ENUM_STEP_CASES)[number]>;
+
+export const STEP_TITLES: Record<Step, string> = {
+  ageBand: "Age band",
+  saturationOfPeripheralOxygen: "SpO2",
+  fractionOfInspiredOxygen: "FiO2",
+  respiratorySupport: "Respiratory support",
+  vasoactiveMedicationCount: "Vasoactive medications",
+  lactateConcentration: "Lactate",
+  meanArterialPressure: "MAP",
+  plateletConcentration: "Platelet",
+  internationalNormalisedRatio: "INR",
+  dDimerConcentration: "D-dimer",
+  fibrinogenConcentration: "Fibrinogen",
+  glasgowComaScale: "GCS",
+  pupilState: "Pupil state",
+} as const;
+
+export const STEP_UNIT_CASES: Record<
+  Step,
+  | ReadonlyArray<LactateConcentrationUnit>
+  | ReadonlyArray<MeanArterialPressureUnit>
+  | ReadonlyArray<PlateletConcentrationUnit>
+  | ReadonlyArray<FibrinogenConcentrationUnit>
+  | ReadonlyArray<DDimerConcentrationUnit>
+  | null
+> = {
+  lactateConcentration: LACTATE_CONCENTRATION_UNIT_CASES,
+  meanArterialPressure: MEAN_ARTERIAL_PRESSURE_UNIT_CASES,
+  plateletConcentration: PLATELET_CONCENTRATION_UNIT_CASES,
+  fibrinogenConcentration: FIBRINOGEN_CONCENTRATION_UNIT_CASES,
+  dDimerConcentration: D_DIMER_CONCENTRATION_UNIT_CASES,
+  ageBand: null,
+  saturationOfPeripheralOxygen: null,
+  fractionOfInspiredOxygen: null,
+  respiratorySupport: null,
+  vasoactiveMedicationCount: null,
+  internationalNormalisedRatio: null,
+  glasgowComaScale: null,
+  pupilState: null,
+} as const;
+
+export const STEP_ENUM_CASES: Record<
+  Step,
+  | {
+      cases: ReadonlyArray<AgeBand>;
+      labels: Record<AgeBand, string>;
+    }
+  | {
+      cases: ReadonlyArray<RespiratorySupport>;
+      labels: Record<RespiratorySupport, string>;
+    }
+  | {
+      cases: ReadonlyArray<PupilState>;
+      labels: Record<PupilState, string>;
+    }
+  | null
+> = {
+  ageBand: {
+    cases: AGE_BANDS,
+    labels: AGE_BAND_LABELS,
+  },
+  respiratorySupport: {
+    cases: RESPIRATORY_SUPPORT_CASES,
+    labels: RESPIRATORY_SUPPORT_LABELS,
+  },
+  pupilState: {
+    cases: PUPIL_STATE_CASES,
+    labels: PUPIL_STATE_LABELS,
+  },
+  vasoactiveMedicationCount: null,
+  internationalNormalisedRatio: null,
+  glasgowComaScale: null,
+  lactateConcentration: null,
+  meanArterialPressure: null,
+  plateletConcentration: null,
+  fibrinogenConcentration: null,
+  dDimerConcentration: null,
+  saturationOfPeripheralOxygen: null,
+  fractionOfInspiredOxygen: null,
+} as const;
+
+export function isIntegerStep(step: Step): step is IntegerStep {
+  return INTEGER_STEP_CASES.includes(step as IntegerStep);
+}
+
+export function isDimensionedStep(step: Step): step is DimensionedStep {
+  return DIMENSIONED_STEP_CASES.includes(step as DimensionedStep);
+}
+
+export function isDimensionlessStep(step: Step): step is DimensionlessStep {
+  return DIMENSIONLESS_STEP_CASES.includes(step as DimensionlessStep);
+}
+
+export function isNumericalStep(step: Step): step is NumericalStep {
+  return NUMERICAL_STEP_CASES.includes(step as NumericalStep);
+}
+
+export function isEnumStep(step: Step): step is EnumStep {
+  return ENUM_STEP_CASES.includes(step as EnumStep);
+}
