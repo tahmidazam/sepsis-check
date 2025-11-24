@@ -4,7 +4,7 @@ import { ErrorBanner } from "@/components/error-banner";
 import { InputValueLabel } from "@/components/input-value-label";
 import { Keyboard } from "@/components/keyboard";
 import { StepSummaryBar } from "@/components/step-summary-bar";
-import { STEP_TITLES } from "@/models/step";
+import { STEP_PRIMARY_LABELS, STEP_SECONDARY_LABELS } from "@/models/step";
 import { useAppStore } from "@/providers/app-store-provider";
 
 export default function NewCheckPage() {
@@ -21,10 +21,16 @@ export default function NewCheckPage() {
         <div className="flex flex-col">
           <StepSummaryBar />
 
-          <h1 className="font-medium text-xl">{STEP_TITLES[step]}</h1>
+          <h1 className="font-medium text-xl">{STEP_PRIMARY_LABELS[step]}</h1>
         </div>
 
         <InputValueLabel />
+
+        {STEP_SECONDARY_LABELS[step] && (
+          <p className="text-sm text-muted-foreground text-left text-balance">
+            {STEP_SECONDARY_LABELS[step]}
+          </p>
+        )}
       </div>
 
       <div>

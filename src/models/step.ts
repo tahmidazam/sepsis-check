@@ -115,7 +115,7 @@ export const ENUM_STEP_CASES = [
 
 export type EnumStep = Extract<Step, (typeof ENUM_STEP_CASES)[number]>;
 
-export const STEP_TITLES: Record<Step, string> = {
+export const STEP_PRIMARY_LABELS: Record<Step, string> = {
   ageBand: "Age band",
   saturationOfPeripheralOxygen: "SpO2",
   fractionOfInspiredOxygen: "FiO2",
@@ -129,6 +129,25 @@ export const STEP_TITLES: Record<Step, string> = {
   fibrinogenConcentration: "Fibrinogen",
   glasgowComaScale: "GCS",
   pupilState: "Pupil state",
+} as const;
+
+export const STEP_SECONDARY_LABELS: Record<Step, string | null> = {
+  ageBand:
+    "Age is not adjusted for prematurity, and the criteria do not apply to birth hospitalisations, children with postconcenptional age <37 weeks, or those aged ≥18 years.",
+  saturationOfPeripheralOxygen: null,
+  fractionOfInspiredOxygen: null,
+  respiratorySupport: null,
+  vasoactiveMedicationCount:
+    "Vasoactive medications include any dose of adrenaline, noradrenaline, dopamine, dobutamine, milrinone, and/or vasopressin (for shock).",
+  lactateConcentration: "Lactate can be arterial or venous.",
+  meanArterialPressure:
+    "Use measured mean arterial pressure preferentially (invasive arterial if available or noninavasive oscillometric), and if measured mean arterial pressure is not available, a calculated mean arterial pressure (⅓ × systolic + ⅔ × diastolic) may be used as an alternative.",
+  plateletConcentration: null,
+  internationalNormalisedRatio: null,
+  dDimerConcentration: null,
+  fibrinogenConcentration: null,
+  glasgowComaScale: null,
+  pupilState: null,
 } as const;
 
 export const STEP_UNIT_CASES: Record<

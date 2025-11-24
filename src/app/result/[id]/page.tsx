@@ -15,7 +15,7 @@ import { getUnitLabel } from "@/lib/get-unit-label";
 import { getValueLabel } from "@/lib/get-value-label";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
 import type { resultSchema } from "@/models/result";
-import { STEP_TITLES, STEPS } from "@/models/step";
+import { STEP_PRIMARY_LABELS, STEPS } from "@/models/step";
 import { useAppStore } from "@/providers/app-store-provider";
 import { Home } from "lucide-react";
 import Link from "next/link";
@@ -133,7 +133,7 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
 
               <TableBody>
                 {STEPS.map((step) => {
-                  const stepLabel = STEP_TITLES[step];
+                  const stepLabel = STEP_PRIMARY_LABELS[step];
                   const valueLabel = getValueLabel(step, variables);
                   const unitLabel = getUnitLabel(step, variables);
 
