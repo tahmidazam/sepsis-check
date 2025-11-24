@@ -1,10 +1,9 @@
 "use client";
 
 import { InstallPrompt } from "@/components/install-prompt";
+import { NewCheckButton } from "@/components/new-check-button";
 import { ResultsTable } from "@/components/results-table";
-import { Button } from "@/components/ui/button";
 import { useAppStore } from "@/providers/app-store-provider";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -45,11 +44,7 @@ export default function Home() {
         }}
       >
         <div className="px-4 py-2">
-          <Button asChild>
-            <Link href="/new" className="w-full h-12">
-              New Check
-            </Link>
-          </Button>
+          <NewCheckButton />
         </div>
       </div>
     </main>

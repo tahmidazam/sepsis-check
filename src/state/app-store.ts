@@ -20,7 +20,7 @@ import { createStore } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 export const createAppStore = (
-  initialAppState: AppState = INITIAL_APP_STATE,
+  initialAppState: AppState = INITIAL_APP_STATE
 ) => {
   return createStore<AppStore>()(
     devtools(
@@ -63,7 +63,7 @@ export const createAppStore = (
                   }
                   if (isDimensionlessStep(state.step)) {
                     const value = variablesSchema.shape[state.step].safeParse(
-                      state.inputValue,
+                      state.inputValue
                     );
 
                     if (!value.success) {
@@ -135,7 +135,11 @@ export const createAppStore = (
             });
           },
           reset: () =>
-            set((state) => ({ ...initialAppState, results: state.results })),
+            set((state) => ({
+              ...initialAppState,
+              results: state.results,
+              errorMessage: null,
+            })),
           toggleUnitPad: () =>
             set((state) => ({
               unitsPickerIsPresented: !state.unitsPickerIsPresented,
@@ -161,7 +165,7 @@ export const createAppStore = (
 
               if (isOmitted) {
                 const newOmittedVariables = state.omittedVariables.filter(
-                  (variable) => variable !== state.step,
+                  (variable) => variable !== state.step
                 );
                 return {
                   omittedVariables: newOmittedVariables,
@@ -241,7 +245,7 @@ export const createAppStore = (
             set((state) => {
               const variables = removeOmittedVariables(
                 state.variables,
-                state.omittedVariables,
+                state.omittedVariables
               );
               return {
                 results: [
@@ -266,9 +270,9 @@ export const createAppStore = (
         }),
         {
           name: "app-store",
-        },
-      ),
-    ),
+        }
+      )
+    )
   );
 };
 
