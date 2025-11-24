@@ -12,7 +12,7 @@ export function InstallPrompt() {
   if (isStandalone) return null;
 
   return (
-    <div className="bg-muted border-b flex flex-row gap-4 justify-between items-center p-4">
+    <div className="bg-muted border-b flex flex-row gap-4 justify-between items-center px-4 py-2">
       <div className="flex flex-row gap-4 items-center">
         <Lightbulb className="text-muted-foreground" />
         <p className="text-sm text-muted-foreground">

@@ -9,7 +9,7 @@ export function ErrorBanner() {
   if (!errorMessage || errorMessage.length === 0) return null;
 
   return (
-    <div className="bg-red-50 border-t border-b border-red-500 flex flex-row gap-4 justify-between items-center p-4">
+    <div className="bg-red-50 border-t border-b border-red-500 flex flex-row gap-4 justify-between items-center px-4 py-2">
       <div className="flex flex-row gap-2 items-center">
         <AlertCircle className="text-red-500" />
         <p className="text-sm text-red-500">{errorMessage}</p>
