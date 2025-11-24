@@ -39,7 +39,7 @@ export function RecordedVariablesTable({
               <TableRow key={step}>
                 <TableCell>{stepLabel}</TableCell>
                 <TableCell className="text-right">{valueLabel}</TableCell>
-                <TableCell>{unitLabel}</TableCell>
+                <TableCell>{valueLabel && unitLabel}</TableCell>
               </TableRow>
             );
           })}
