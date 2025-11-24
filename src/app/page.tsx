@@ -33,7 +33,7 @@ export default function Home() {
       >
         <InstallPrompt />
 
-        <div className="py-8">
+        <div className="py-4">
           <ResultsTable />
         </div>
       </div>
