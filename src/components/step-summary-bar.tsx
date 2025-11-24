@@ -1,5 +1,10 @@
 import { cn } from "@/lib/utils";
-import { isDimensionedStep, isNumericalStep, type Step, STEPS } from "@/models/step";
+import {
+  isDimensionedStep,
+  isNumericalStep,
+  type Step,
+  STEPS,
+} from "@/models/step";
 import { useAppStore } from "@/providers/app-store-provider";
 
 export function StepSummaryBar() {
@@ -30,7 +35,7 @@ export function StepSummaryBar() {
                 "w-full rounded-full",
                 omittedVariables.includes(stepElement) && "bg-muted",
                 stepIsCompleted(stepElement) && "bg-green-500",
-                step === stepElement && "bg-primary",
+                step === stepElement && "bg-primary"
               )}
             ></div>
           );

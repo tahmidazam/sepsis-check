@@ -43,7 +43,7 @@ export default function Home() {
           paddingBottom: "env(safe-area-inset-bottom)",
         }}
       >
-        <div className="px-4 py-2">
+        <div className="px-4 py-2 flex flex-row gap-2">
           <NewCheckButton />
         </div>
       </div>

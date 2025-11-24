@@ -20,7 +20,7 @@ export function NewCheckButton() {
 
   return (
     <Button asChild>
-      <Link href="/new" className="w-full h-12">
+      <Link href="/new" className="grow h-12">
         {hasUnsavedChanges ? "Continue Check" : "New Check"}
       </Link>
     </Button>

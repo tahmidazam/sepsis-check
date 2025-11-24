@@ -1,49 +1,15 @@
 "use client";
 
+import { ComponentBreakdownTable } from "@/components/component-breakdown-table";
 import Guidance from "@/components/guidance";
+import { NewCheckButton } from "@/components/new-check-button";
+import { RecordedVariablesTable } from "@/components/recorded-variables-table";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { getUnitLabel } from "@/lib/get-unit-label";
-import { getValueLabel } from "@/lib/get-value-label";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
-import type { resultSchema } from "@/models/result";
-import { STEP_PRIMARY_LABELS, STEPS } from "@/models/step";
 import { useAppStore } from "@/providers/app-store-provider";
 import { Home } from "lucide-react";
 import Link from "next/link";
 import { use } from "react";
-
-const COMPONENT_RESULT_KEY_MAP: {
-  [key: string]: {
-    label: string;
-    resultSchemaKey: keyof typeof resultSchema.shape;
-  };
-} = {
-  respiratory: {
-    label: "Respiratory",
-    resultSchemaKey: "respiratoryComponent",
-  },
-  cardiovascular: {
-    label: "Cardiovascular",
-    resultSchemaKey: "cardiovascularComponent",
-  },
-  coagulation: {
-    label: "Coagulation",
-    resultSchemaKey: "coagulationComponent",
-  },
-  neurological: {
-    label: "Neurological",
-    resultSchemaKey: "neurologicalComponent",
-  },
-};
 
 export default function ResultsPage(props: PageProps<"/result/[id]">) {
   const { id } = use(props.params);
@@ -81,73 +47,8 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
       >
         <div className="py-4 flex flex-col gap-8">
           <Guidance diagnosis={diagnosis} />
-
-          <div className="flex flex-col gap-2">
-            <h2 className="font-medium px-4">Component breakdown</h2>
-
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Component</TableHead>
-                  <TableHead>Score</TableHead>
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                {Object.entries(COMPONENT_RESULT_KEY_MAP).map(
-                  ([label, key]) => (
-                    <TableRow key={label}>
-                      <TableCell>
-                        {label.charAt(0).toUpperCase() + label.slice(1)}
-                      </TableCell>
-                      <TableCell className="w-full">
-                        {result[key.resultSchemaKey]?.toString() ?? "No score"}
-                      </TableCell>
-                    </TableRow>
-                  )
-                )}
-              </TableBody>
-
-              <TableFooter>
-                <TableRow>
-                  <TableCell>Phoenix Sepsis Score</TableCell>
-                  <TableCell className="w-full">
-                    {result.phoenixSepsisScore ?? "No score"}
-                  </TableCell>
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h2 className="font-medium px-4">Recorded variables</h2>
-
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Variable</TableHead>
-                  <TableHead>Value</TableHead>
-                  <TableHead>Unit</TableHead>
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                {STEPS.map((step) => {
-                  const stepLabel = STEP_PRIMARY_LABELS[step];
-                  const valueLabel = getValueLabel(step, variables);
-                  const unitLabel = getUnitLabel(step, variables);
-
-                  return (
-                    <TableRow key={step}>
-                      <TableCell>{stepLabel}</TableCell>
-                      <TableCell className="text-right">{valueLabel}</TableCell>
-                      <TableCell>{unitLabel}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
+          <ComponentBreakdownTable result={result} />
+          <RecordedVariablesTable variables={variables} />
         </div>
       </div>
 
@@ -165,11 +66,7 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
             </Link>
           </Button>
 
-          <Button asChild>
-            <Link href="/new" className="grow h-12">
-              New Check
-            </Link>
-          </Button>
+          <NewCheckButton />
         </div>
       </div>
     </main>
