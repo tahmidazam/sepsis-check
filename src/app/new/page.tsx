@@ -12,7 +12,7 @@ export default function NewCheckPage() {
 
   return (
     <main
-      className="h-dvh flex flex-col justify-between"
+      className="h-screen flex flex-col justify-between"
       style={{
         paddingTop: "env(safe-area-inset-top)",
       }}

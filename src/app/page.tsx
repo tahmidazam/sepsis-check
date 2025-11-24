@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="h-dvh w-screen">
+    <main className="h-screen w-screen">
       <div
         className="w-full fixed top-0 left-0 border-b z-20 bg-background"
         style={{
