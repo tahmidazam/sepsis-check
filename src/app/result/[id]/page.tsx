@@ -58,9 +58,9 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
           paddingBottom: "env(safe-area-inset-bottom)",
         }}
       >
-        <div className="px-4 py-2 flex flex-row gap-2">
+        <div className="px-4 py-2 grid grid-flow-col auto-cols-fr gap-2">
           <Button asChild variant="outline">
-            <Link href="/" className="grow h-12">
+            <Link href="/" className="h-12">
               <Home />
               Home
             </Link>

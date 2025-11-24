@@ -6,7 +6,7 @@ import { useAppStore } from "@/providers/app-store-provider";
 export function UnitPadToggleButton() {
   const toggleUnitPad = useAppStore((state) => state.toggleUnitPad);
   const stepOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step),
+    state.omittedVariables.includes(state.step)
   );
   const unit = useAppStore((state) => {
     const variable = state.variables[state.step];
@@ -20,7 +20,8 @@ export function UnitPadToggleButton() {
     return null;
   });
 
-  if (!unit) return <div></div>;
+  if (!unit)
+    return <Button variant="outline" disabled={true} className="h-12"></Button>;
 
   return (
     <Button
