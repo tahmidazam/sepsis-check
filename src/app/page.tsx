@@ -9,6 +9,7 @@ import { useAppStore } from "@/providers/app-store-provider";
 import { useRouter } from "next/navigation";
 import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
 import { NavigationBar } from "@/components/navigation-bar";
+import { ButtonArray } from "@/components/button-array";
 
 export default function Home() {
   const results = useAppStore((state) => state.results);
@@ -26,9 +27,9 @@ export default function Home() {
       </SafeAreaContentWrapper>
 
       <FixBottom>
-        <div className="px-4 py-2 grid grid-flow-col  auto-cols-fr  gap-2">
+        <ButtonArray>
           <NewCheckButton resetAndStartNewOption />
-        </div>
+        </ButtonArray>
       </FixBottom>
     </>
   );
