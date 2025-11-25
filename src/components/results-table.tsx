@@ -7,18 +7,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
 import { useAppStore } from "@/providers/app-store-provider";
 import { useRouter } from "next/navigation";
 
-export function ResultsTable() {
+export function ResultsTable({ className }: { className?: string }) {
   const results = useAppStore((state) => state.results);
   const router = useRouter();
 
   if (results.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={cn("flex flex-col gap-2", className)}>
       <h2 className="font-medium px-4">Check history</h2>
 
       <Table>

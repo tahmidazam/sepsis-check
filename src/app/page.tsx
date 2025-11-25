@@ -7,6 +7,7 @@ import { NewCheckButton } from "@/components/new-check-button";
 import { ResultsTable } from "@/components/results-table";
 import { useAppStore } from "@/providers/app-store-provider";
 import { useRouter } from "next/navigation";
+import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
 
 export default function Home() {
   const results = useAppStore((state) => state.results);
@@ -21,18 +22,10 @@ export default function Home() {
         </div>
       </FixTop>
 
-      <div
-        style={{
-          paddingTop: "calc(env(safe-area-inset-top) + 60px)",
-          paddingBottom: "calc(env(safe-area-inset-bottom) + 64px)",
-        }}
-      >
+      <SafeAreaContentWrapper paddingTop="60px" paddingBottom="64px">
         <InstallPrompt />
-
-        <div className="py-4">
-          <ResultsTable />
-        </div>
-      </div>
+        <ResultsTable className="py-4" />
+      </SafeAreaContentWrapper>
 
       <FixBottom>
         <div className="px-4 py-2 grid grid-flow-col  auto-cols-fr  gap-2">
