@@ -1,16 +1,16 @@
 "use client";
 
 import { EnumPad } from "@/components/enum-pad";
-import { FinishButton } from "@/components/finish-button";
-import { NextStepButton } from "@/components/next-step-button";
+import { FinishButton } from "@/components/buttons/finish";
+import { NextStepButton } from "@/components/buttons/next-step";
 import { NumberPad } from "@/components/number-pad";
-import { PreviousStepButton } from "@/components/previous-step-button";
-import { RecordValueButton } from "@/components/record-value-button";
-import { ResetButton } from "@/components/reset-button";
-import { ReturnHomeButton } from "@/components/return-home-button";
+import { PreviousStepButton } from "@/components/buttons/previous-step";
+import { RecordValueButton } from "@/components/buttons/record-value";
+import { ResetButton } from "@/components/buttons/reset";
+import { ReturnHomeButton } from "@/components/buttons/return-home";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { UnitPad } from "@/components/unit-pad";
-import { UnitPadToggleButton } from "@/components/unit-pad-toggle-button";
+import { UnitPadToggleButton } from "@/components/buttons/unit-pad-toggle";
 
 export function Keyboard() {
   return (

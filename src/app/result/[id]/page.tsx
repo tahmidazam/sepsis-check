@@ -5,9 +5,9 @@ import { ComponentBreakdownTable } from "@/components/component-breakdown-table"
 import { FixBottom } from "@/components/fix-bottom";
 import { FixTop } from "@/components/fix-top";
 import Guidance from "@/components/guidance";
-import { HomeButton } from "@/components/home-button";
+import { HomeButton } from "@/components/buttons/home";
 import { NavigationBar } from "@/components/navigation-bar";
-import { NewCheckButton } from "@/components/new-check-button";
+import { NewCheckButton } from "@/components/buttons/new-check";
 import { RecordedVariablesTable } from "@/components/recorded-variables-table";
 import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
