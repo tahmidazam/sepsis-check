@@ -8,6 +8,7 @@ import { ResultsTable } from "@/components/results-table";
 import { useAppStore } from "@/providers/app-store-provider";
 import { useRouter } from "next/navigation";
 import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
+import { NavigationBar } from "@/components/navigation-bar";
 
 export default function Home() {
   const results = useAppStore((state) => state.results);
@@ -16,10 +17,7 @@ export default function Home() {
   return (
     <>
       <FixTop>
-        <div className="px-4 py-2">
-          <h1 className="font-medium text-center">SepsisCheck</h1>
-          <p className="text-sm text-muted-foreground text-center">v0.0.1</p>
-        </div>
+        <NavigationBar title="SepsisCheck" subtitle="v0.0.1" />
       </FixTop>
 
       <SafeAreaContentWrapper paddingTop="60px" paddingBottom="64px">

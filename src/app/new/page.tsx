@@ -14,7 +14,7 @@ export default function NewCheckPage() {
 
   return (
     <>
-      <FixTop>
+      <FixTop className="border-b-0">
         <div className="flex flex-col p-4 gap-4">
           <div className="flex flex-col">
             <StepSummaryBar />

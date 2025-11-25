@@ -1,10 +1,12 @@
 "use client";
 
+import { ButtonArray } from "@/components/button-array";
 import { ComponentBreakdownTable } from "@/components/component-breakdown-table";
 import { FixBottom } from "@/components/fix-bottom";
 import { FixTop } from "@/components/fix-top";
 import Guidance from "@/components/guidance";
 import { HomeButton } from "@/components/home-button";
+import { NavigationBar } from "@/components/navigation-bar";
 import { NewCheckButton } from "@/components/new-check-button";
 import { RecordedVariablesTable } from "@/components/recorded-variables-table";
 import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
@@ -18,21 +20,17 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
 
   if (!result) return null;
 
-  const { timestamp, variables, diagnosis } = result;
+  const { variables, diagnosis } = result;
+
+  const title = DIAGNOSIS_LABELS[diagnosis];
+  const subtitle = result.phoenixSepsisScore
+    ? `Score of ${result.phoenixSepsisScore}`
+    : "No score";
 
   return (
     <>
       <FixTop>
-        <div className="px-4 py-2">
-          <h1 className="font-medium text-center">
-            {DIAGNOSIS_LABELS[diagnosis] ?? DIAGNOSIS_LABELS["no-diagnosis"]}
-          </h1>
-          <p className="text-sm text-muted-foreground text-center">
-            {result.phoenixSepsisScore
-              ? `Score of ${result.phoenixSepsisScore}`
-              : "No score"}
-          </p>
-        </div>
+        <NavigationBar title={title} subtitle={subtitle} />
       </FixTop>
 
       <SafeAreaContentWrapper
@@ -46,11 +44,10 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
       </SafeAreaContentWrapper>
 
       <FixBottom>
-        <div className="px-4 py-2 grid grid-flow-col auto-cols-fr gap-2">
+        <ButtonArray>
           <HomeButton />
-
           <NewCheckButton />
-        </div>
+        </ButtonArray>
       </FixBottom>
     </>
   );
