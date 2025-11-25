@@ -29,19 +29,24 @@ export function scoreVariables(variables: Variables) {
     lactateSubcomponent,
     meanArterialPressureSubcomponent,
   ]);
-  const coagulationComponent = sumNonNullElements([
+
+  const coagulationSubcomponentsSumResult = sumNonNullElements([
     plateletSubcomponent,
     inrSubcomponent,
     dDimerSubcomponent,
     fibrinogenSubcomponent,
   ]);
+  const coagulationComponent = coagulationSubcomponentsSumResult
+    ? Math.max(coagulationSubcomponentsSumResult, 2)
+    : null;
+
   const neurologicalComponent = scoreNeurologicalComponent(variables);
 
   const { phoenixSepsisScore, diagnosis } = getPhoenixSepsisScoreAndDiagnosis(
     respiratoryComponent,
     cardiovascularComponent,
     coagulationComponent,
-    neurologicalComponent,
+    neurologicalComponent
   );
 
   return {
