@@ -33,7 +33,12 @@ export default function NewCheckPage() {
         )}
       </div>
 
-      <div>
+      <div
+        className="fixed bottom-0 left-0 w-full z-20 bg-muted"
+        style={{
+          paddingBottom: "env(safe-area-inset-bottom)",
+        }}
+      >
         <ErrorBanner />
 
         <Keyboard />

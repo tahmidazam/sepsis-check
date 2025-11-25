@@ -14,12 +14,7 @@ import { UnitPadToggleButton } from "@/components/unit-pad-toggle-button";
 
 export function Keyboard() {
   return (
-    <div
-      className="flex flex-col gap-2 px-4 pt-2 bg-muted border-t"
-      style={{
-        paddingBottom: "calc(env(safe-area-inset-bottom) + var(--spacing) * 2)",
-      }}
-    >
+    <div className="flex flex-col gap-2 px-4 py-2 bg-muted border-t">
       <div className="grid grid-cols-3 gap-2">
         <ButtonGroup orientation="horizontal" className="w-full">
           <ReturnHomeButton />
