@@ -4,7 +4,7 @@ import { FixTop } from "@/components/fix-top";
 import { InstallPrompt } from "@/components/install-prompt";
 import { NavigationBar } from "@/components/navigation-bar";
 import { NewCheckButton } from "@/components/buttons/new-check";
-import { ResultsTable } from "@/components/results-table";
+import { ResultsTable } from "@/components/tables/results";
 import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
 
 export default function Home() {
