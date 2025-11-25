@@ -1,6 +1,6 @@
-import type { Metadata, Viewport } from "next";
 import "@/app/globals.css";
 import { AppStoreProvider } from "@/providers/app-store-provider";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "SepsisCheck",
@@ -25,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppStoreProvider>{children}</AppStoreProvider>
+        <AppStoreProvider>
+          <main className="h-screen w-screen">{children}</main>
+        </AppStoreProvider>
       </body>
     </html>
   );
