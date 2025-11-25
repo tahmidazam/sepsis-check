@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonArray } from "@/components/layout/button-array";
 import { FixBottom } from "@/components/layout/fix-bottom";
 import { FixTop } from "@/components/layout/fix-top";

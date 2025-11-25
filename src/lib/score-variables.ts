@@ -46,7 +46,7 @@ export function scoreVariables(variables: Variables) {
     respiratoryComponent,
     cardiovascularComponent,
     coagulationComponent,
-    neurologicalComponent
+    neurologicalComponent,
   );
 
   return {

@@ -12,7 +12,7 @@ export function scoreLactateSubcomponent(variables: Variables): number | null {
 
   const lactateConcentrationInBaseUnit = convertLactateConcentrationToBaseUnit(
     value,
-    unit
+    unit,
   );
 
   if (lactateConcentrationInBaseUnit >= 11) {

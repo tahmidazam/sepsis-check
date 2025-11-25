@@ -5,7 +5,7 @@ export function getPhoenixSepsisScoreAndDiagnosis(
   respiratoryComponent: number | null,
   cardiovascularComponent: number | null,
   coagulationComponent: number | null,
-  neurologicalComponent: number | null
+  neurologicalComponent: number | null,
 ): {
   phoenixSepsisScore: number | null;
   diagnosis: Diagnosis;

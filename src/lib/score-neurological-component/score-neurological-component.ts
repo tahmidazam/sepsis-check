@@ -1,7 +1,7 @@
 import type { Variables } from "@/models/variables";
 
 export function scoreNeurologicalComponent(
-  variables: Variables
+  variables: Variables,
 ): number | null {
   const { pupilState, glasgowComaScale } = variables;
 

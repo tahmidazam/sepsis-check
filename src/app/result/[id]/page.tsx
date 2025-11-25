@@ -13,6 +13,7 @@ import { SafeAreaContentWrapper } from "@/components/layout/safe-area-content-wr
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
 import { useAppStore } from "@/providers/app-store-provider";
 import { use } from "react";
+import { MetadataTable } from "@/components/tables/metadata";
 
 export default function ResultsPage(props: PageProps<"/result/[id]">) {
   const { id } = use(props.params);
@@ -41,6 +42,7 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
         <Guidance diagnosis={diagnosis} />
         <ComponentBreakdownTable result={result} />
         <RecordedVariablesTable variables={variables} />
+        <MetadataTable result={result} />
       </SafeAreaContentWrapper>
 
       <FixBottom>
