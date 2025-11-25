@@ -1,11 +1,11 @@
-import { ButtonArray } from "@/components/button-array";
-import { FixBottom } from "@/components/fix-bottom";
-import { FixTop } from "@/components/fix-top";
+import { ButtonArray } from "@/components/layout/button-array";
+import { FixBottom } from "@/components/layout/fix-bottom";
+import { FixTop } from "@/components/layout/fix-top";
 import { InstallPrompt } from "@/components/install-prompt";
 import { NavigationBar } from "@/components/navigation-bar";
 import { NewCheckButton } from "@/components/buttons/new-check";
 import { ResultsTable } from "@/components/tables/results";
-import { SafeAreaContentWrapper } from "@/components/safe-area-content-wrapper";
+import { SafeAreaContentWrapper } from "@/components/layout/safe-area-content-wrapper";
 
 export default function Home() {
   return (

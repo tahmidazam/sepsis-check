@@ -25,26 +25,20 @@ export function StepSummaryBar() {
     return value !== null;
   };
   return (
-    <div className="flex flex-col gap-2">
-      <div className={`h-1 flex flex-row gap-1`}>
-        {STEPS.map((stepElement: Step) => {
-          return (
-            <div
-              key={stepElement}
-              className={cn(
-                "w-full rounded-full",
-                omittedVariables.includes(stepElement) && "bg-muted",
-                stepIsCompleted(stepElement) && "bg-green-500",
-                step === stepElement && "bg-primary",
-              )}
-            ></div>
-          );
-        })}
-      </div>
-
-      <p className="text-sm text-muted-foreground">
-        Step {STEPS.indexOf(step) + 1} of {STEPS.length}
-      </p>
+    <div className={`h-1 flex flex-row gap-1`}>
+      {STEPS.map((stepElement: Step) => {
+        return (
+          <div
+            key={stepElement}
+            className={cn(
+              "w-full rounded-full",
+              omittedVariables.includes(stepElement) && "bg-muted",
+              stepIsCompleted(stepElement) && "bg-green-500",
+              step === stepElement && "bg-primary"
+            )}
+          ></div>
+        );
+      })}
     </div>
   );
 }
