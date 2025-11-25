@@ -11,13 +11,13 @@ export function FixTop({
     <div
       className={cn(
         "w-full fixed top-0 left-0 border-b z-20 bg-background",
-        className,
+        className
       )}
       style={{
         paddingTop: "env(safe-area-inset-top)",
       }}
     >
-      {children}
+      <div className="max-w-lg mx-auto"> {children}</div>
     </div>
   );
 }
