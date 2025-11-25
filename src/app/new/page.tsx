@@ -11,26 +11,28 @@ export default function NewCheckPage() {
   const step = useAppStore((state) => state.step);
 
   return (
-    <main
-      className="h-screen flex flex-col justify-between"
-      style={{
-        paddingTop: "env(safe-area-inset-top)",
-      }}
-    >
-      <div className="flex flex-col p-4 gap-4">
-        <div className="flex flex-col">
-          <StepSummaryBar />
+    <main className="h-screen w-screen">
+      <div
+        className="w-full fixed top-0 left-0 z-20 bg-background"
+        style={{
+          paddingTop: "env(safe-area-inset-top)",
+        }}
+      >
+        <div className="flex flex-col p-4 gap-4">
+          <div className="flex flex-col">
+            <StepSummaryBar />
 
-          <h1 className="font-medium text-xl">{STEP_PRIMARY_LABELS[step]}</h1>
+            <h1 className="font-medium text-xl">{STEP_PRIMARY_LABELS[step]}</h1>
+          </div>
+
+          <InputValueLabel />
+
+          {STEP_SECONDARY_LABELS[step] && (
+            <p className="text-sm text-muted-foreground text-left text-balance">
+              {STEP_SECONDARY_LABELS[step]}
+            </p>
+          )}
         </div>
-
-        <InputValueLabel />
-
-        {STEP_SECONDARY_LABELS[step] && (
-          <p className="text-sm text-muted-foreground text-left text-balance">
-            {STEP_SECONDARY_LABELS[step]}
-          </p>
-        )}
       </div>
 
       <div
