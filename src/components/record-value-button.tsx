@@ -5,7 +5,7 @@ export function RecordValueButton() {
   const undoOmission = useAppStore((state) => state.toggleStepOmission);
 
   const stepIsOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step)
+    state.omittedVariables.includes(state.step),
   );
 
   if (!stepIsOmitted) return null;

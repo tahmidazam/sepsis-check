@@ -11,7 +11,7 @@ export function FixBottom({
     <div
       className={cn(
         "fixed bottom-0 left-0 w-full z-20 bg-background border-t",
-        className
+        className,
       )}
       style={{
         paddingBottom: "env(safe-area-inset-bottom)",

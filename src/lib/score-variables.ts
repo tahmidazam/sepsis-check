@@ -1,14 +1,14 @@
 import { getPhoenixSepsisScoreAndDiagnosis } from "@/lib/get-diagnosis";
-import { scoreDDimerSubcomponent } from "@/lib/score-d-dimer-subcomponent";
-import { scoreFibrinogenSubcomponent } from "@/lib/score-fibrinogen-subcomponent";
-import { scoreINRSubcomponent } from "@/lib/score-inr-subcomponent";
-import { scoreLactateSubcomponent } from "@/lib/score-lactate-concentration-subcomponent";
+import { scoreDDimerSubcomponent } from "@/lib/score-d-dimer-subcomponent/score-d-dimer-subcomponent";
+import { scoreFibrinogenSubcomponent } from "@/lib/score-fibrinogen-subcomponent/score-fibrinogen-subcomponent";
+import { scoreINRSubcomponent } from "@/lib/score-inr-subcomponent/score-inr-subcomponent";
+import { scoreLactateSubcomponent } from "@/lib/score-lactate-concentration-subcomponent/score-lactate-concentration-subcomponent";
 import { scoreMeanArterialPressureSubcomponent } from "@/lib/score-mean-arterial-pressure-subcomponent";
-import { scoreNeurologicalComponent } from "@/lib/score-neurological-component";
-import { scorePlateletSubcomponent } from "@/lib/score-platelet-subcomponent";
+import { scoreNeurologicalComponent } from "@/lib/score-neurological-component/score-neurological-component";
+import { scorePlateletSubcomponent } from "@/lib/score-platelet-subcomponent/score-platelet-subcomponent";
 import { scoreRespiratoryComponent } from "@/lib/score-respiratory-component";
-import { scoreVasoactiveMedicationsSubcomponent } from "@/lib/score-vasoactive-medications-subcomponent";
-import sumNonNullElements from "@/lib/sum-non-null-elements";
+import { scoreVasoactiveMedicationsSubcomponent } from "@/lib/score-vasoactive-medications-subcomponent/score-vasoactive-medications-subcomponent";
+import sumNonNullElements from "@/lib/sum-non-null-elements/sum-non-null-elements";
 import type { Variables } from "@/models/variables";
 
 export function scoreVariables(variables: Variables) {

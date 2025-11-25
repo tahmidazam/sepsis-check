@@ -11,7 +11,7 @@ export function ButtonArray({
     <div
       className={cn(
         "px-4 py-2 grid grid-flow-col auto-cols-fr gap-2",
-        className
+        className,
       )}
     >
       {children}

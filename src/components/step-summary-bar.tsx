@@ -35,7 +35,7 @@ export function StepSummaryBar() {
                 "w-full rounded-full",
                 omittedVariables.includes(stepElement) && "bg-muted",
                 stepIsCompleted(stepElement) && "bg-green-500",
-                step === stepElement && "bg-primary"
+                step === stepElement && "bg-primary",
               )}
             ></div>
           );

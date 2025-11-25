@@ -19,7 +19,7 @@ export function NewCheckButton({
       {
         step: INITIAL_APP_STATE.step,
         variables: INITIAL_APP_STATE.variables,
-      }
+      },
     );
   });
 

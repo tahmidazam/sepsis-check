@@ -1,11 +1,11 @@
-import sumNonNullElements from "@/lib/sum-non-null-elements";
+import sumNonNullElements from "@/lib/sum-non-null-elements/sum-non-null-elements";
 import type { Diagnosis } from "@/models/diagnosis";
 
 export function getPhoenixSepsisScoreAndDiagnosis(
   respiratoryComponent: number | null,
   cardiovascularComponent: number | null,
   coagulationComponent: number | null,
-  neurologicalComponent: number | null,
+  neurologicalComponent: number | null
 ): {
   phoenixSepsisScore: number | null;
   diagnosis: Diagnosis;

@@ -12,7 +12,7 @@ export function scoreDDimerSubcomponent(variables: Variables): number | null {
 
   const dDimerConcentrationInBaseUnit = convertDDimerConcentrationToBaseUnit(
     value,
-    unit,
+    unit
   );
 
   if (dDimerConcentrationInBaseUnit > 2) {

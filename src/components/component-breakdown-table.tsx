@@ -59,7 +59,7 @@ export function ComponentBreakdownTable({ result }: { result: Result }) {
                   </TableCell>
                 </TableRow>
               );
-            }
+            },
           )}
         </TableBody>
 

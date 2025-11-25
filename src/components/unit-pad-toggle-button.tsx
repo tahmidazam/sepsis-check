@@ -6,7 +6,7 @@ import { useAppStore } from "@/providers/app-store-provider";
 export function UnitPadToggleButton() {
   const toggleUnitPad = useAppStore((state) => state.toggleUnitPad);
   const stepOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step)
+    state.omittedVariables.includes(state.step),
   );
   const unit = useAppStore((state) => {
     const variable = state.variables[state.step];

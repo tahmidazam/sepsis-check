@@ -1,7 +1,7 @@
 import type { Variables } from "@/models/variables";
 
 export function scoreVasoactiveMedicationsSubcomponent(
-  variables: Variables,
+  variables: Variables
 ): number | null {
   const { vasoactiveMedicationCount } = variables;
 

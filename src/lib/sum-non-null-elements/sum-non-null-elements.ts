@@ -1,5 +1,5 @@
 export default function sumNonNullElements(
-  arr: (number | null)[],
+  arr: (number | null)[]
 ): number | null {
   const definedElements = arr.filter((element) => element !== null);
 
