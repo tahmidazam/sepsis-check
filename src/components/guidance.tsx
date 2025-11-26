@@ -29,7 +29,7 @@ export default function Guidance({ diagnosis }: { diagnosis: Diagnosis }) {
   if (diagnosis === "no-sepsis" || diagnosis === "no-diagnosis") return null;
 
   return (
-    <div className="flex flex-col gap-4 px-4">
+    <div className="flex flex-col gap-4 px-4 w-full max-w-lg mx-auto">
       <div className="flex flex-col">
         <p className="font-medium">
           Initial Resuscitation Algorithm for Children

@@ -19,7 +19,7 @@ export function ResultsTable({ className }: { className?: string }) {
   if (results.length === 0) return null;
 
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("flex flex-col gap-2 max-w-lg mx-auto", className)}>
       <h2 className="font-medium px-4">Check history</h2>
 
       <Table>

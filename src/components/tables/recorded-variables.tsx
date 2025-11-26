@@ -17,7 +17,7 @@ export function RecordedVariablesTable({
   variables: Variables;
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full max-w-lg mx-auto">
       <h2 className="font-medium px-4">Recorded variables</h2>
 
       <Table>

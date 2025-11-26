@@ -10,7 +10,7 @@ import { Result } from "@/models/result";
 
 export function MetadataTable({ result }: { result: Result }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full max-w-lg mx-auto">
       <h2 className="font-medium px-4">Metadata</h2>
 
       <Table>

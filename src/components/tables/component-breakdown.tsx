@@ -35,7 +35,7 @@ const COMPONENT_RESULT_KEY_MAP: {
 
 export function ComponentBreakdownTable({ result }: { result: Result }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full max-w-lg mx-auto">
       <h2 className="font-medium px-4">Component breakdown</h2>
 
       <Table>
@@ -59,7 +59,7 @@ export function ComponentBreakdownTable({ result }: { result: Result }) {
                   </TableCell>
                 </TableRow>
               );
-            },
+            }
           )}
         </TableBody>
 
