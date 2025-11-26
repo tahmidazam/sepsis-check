@@ -1,25 +1,30 @@
 "use client";
 
+import { HomeButton } from "@/components/buttons/home";
+import { NewCheckButton } from "@/components/buttons/new-check";
+import Guidance from "@/components/guidance";
 import { ButtonArray } from "@/components/layout/button-array";
-import { ComponentBreakdownTable } from "@/components/tables/component-breakdown";
 import { FixBottom } from "@/components/layout/fix-bottom";
 import { FixTop } from "@/components/layout/fix-top";
-import Guidance from "@/components/guidance";
-import { HomeButton } from "@/components/buttons/home";
-import { NavigationBar } from "@/components/navigation-bar";
-import { NewCheckButton } from "@/components/buttons/new-check";
-import { RecordedVariablesTable } from "@/components/tables/recorded-variables";
 import { SafeAreaContentWrapper } from "@/components/layout/safe-area-content-wrapper";
+import { Loading } from "@/components/loading";
+import { NavigationBar } from "@/components/navigation-bar";
+import { ComponentBreakdownTable } from "@/components/tables/component-breakdown";
+import { MetadataTable } from "@/components/tables/metadata";
+import { RecordedVariablesTable } from "@/components/tables/recorded-variables";
+import { useHydration } from "@/hooks/use-hydration";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
 import { useAppStore } from "@/providers/app-store-provider";
+import { notFound } from "next/navigation";
 import { use } from "react";
-import { MetadataTable } from "@/components/tables/metadata";
 
 export default function ResultsPage(props: PageProps<"/result/[id]">) {
+  const hydrated = useHydration();
   const { id } = use(props.params);
   const result = useAppStore((state) => state.results.find((i) => i.id === id));
 
-  if (!result) return null;
+  if (!hydrated) return <Loading />;
+  if (!result) return notFound();
 
   const { variables, diagnosis } = result;
 

@@ -34,3 +34,12 @@ export const useAppStore = <T,>(selector: (store: AppStore) => T) => {
 
   return useStore(appStoreContext, useShallow(selector));
 };
+
+export const useAppStoreContext = () => {
+  const appStoreContext = useContext(AppStoreContext);
+
+  if (!appStoreContext)
+    throw new Error("useAppStoreContext must be used within AppStoreProvider");
+
+  return appStoreContext;
+};

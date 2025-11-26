@@ -8,9 +8,14 @@ import { InputValueLabel } from "@/components/labels/input-value";
 import { StepProgressLabel } from "@/components/labels/step-progress";
 import { FixBottom } from "@/components/layout/fix-bottom";
 import { FixTop } from "@/components/layout/fix-top";
+import { Loading } from "@/components/loading";
 import { StepSummaryBar } from "@/components/step-summary-bar";
+import { useHydration } from "@/hooks/use-hydration";
 
 export default function NewCheckPage() {
+  const hydrated = useHydration();
+  if (!hydrated) return <Loading />;
+
   return (
     <>
       <FixTop className="border-b-0">
