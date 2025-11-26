@@ -2,6 +2,7 @@
 
 import { HomeButton } from "@/components/buttons/home";
 import { NewCheckButton } from "@/components/buttons/new-check";
+import { ExportOptions } from "@/components/export-options";
 import Guidance from "@/components/guidance";
 import { ButtonArray } from "@/components/layout/button-array";
 import { FixBottom } from "@/components/layout/fix-bottom";
@@ -48,6 +49,7 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
         <ComponentBreakdownTable result={result} />
         <RecordedVariablesTable variables={variables} />
         <MetadataTable result={result} />
+        <ExportOptions result={result} />
       </SafeAreaContentWrapper>
 
       <FixBottom>
