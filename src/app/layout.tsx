@@ -25,9 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppStoreProvider>
-          <main className="h-screen w-screen">{children}</main>
-        </AppStoreProvider>
+        <AppStoreProvider>{children}</AppStoreProvider>
       </body>
     </html>
   );

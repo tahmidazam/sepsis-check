@@ -35,7 +35,7 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
     : "No score";
 
   return (
-    <>
+    <main className="h-screen w-screen">
       <FixTop>
         <NavigationBar title={title} subtitle={subtitle} />
       </FixTop>
@@ -58,6 +58,6 @@ export default function ResultsPage(props: PageProps<"/result/[id]">) {
           <NewCheckButton />
         </ButtonArray>
       </FixBottom>
-    </>
+    </main>
   );
 }

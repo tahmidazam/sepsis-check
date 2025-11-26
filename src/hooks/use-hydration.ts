@@ -7,7 +7,7 @@ export const useHydration = () => {
 
   useEffect(() => {
     const unsubFinishHydration = appStoreContext.persist.onFinishHydration(() =>
-      setHydrated(true),
+      setHydrated(true)
     );
 
     setHydrated(appStoreContext.persist.hasHydrated());

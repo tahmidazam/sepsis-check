@@ -1,5 +1,5 @@
 import { ExportJSONButton } from "@/components/buttons/export-json";
-import { Result } from "@/models/result";
+import type { Result } from "@/models/result";
 
 export function ExportOptions({ result }: { result: Result }) {
   return (

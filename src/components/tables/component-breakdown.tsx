@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Result, resultSchema } from "@/models/result";
+import type { Result, resultSchema } from "@/models/result";
 
 const COMPONENT_RESULT_KEY_MAP: {
   [key: string]: {

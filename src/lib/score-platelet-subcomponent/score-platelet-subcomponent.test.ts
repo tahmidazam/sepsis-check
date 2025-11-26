@@ -1,6 +1,6 @@
 import { scorePlateletSubcomponent } from "@/lib/score-platelet-subcomponent/score-platelet-subcomponent";
 import { INITIAL_APP_STATE } from "@/models/app-state";
-import { Variables } from "@/models/variables";
+import type { Variables } from "@/models/variables";
 import { describe, expect, it } from "vitest";
 
 describe("scorePlateletSubcomponent", () => {

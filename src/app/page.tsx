@@ -17,7 +17,7 @@ export default function Home() {
   if (!hydrated) return <Loading />;
 
   return (
-    <>
+    <main className="h-screen w-screen">
       <FixTop>
         <NavigationBar title="SepsisCheck" subtitle="v0.0.2" />
       </FixTop>
@@ -32,6 +32,6 @@ export default function Home() {
           <NewCheckButton resetAndStartNewOption />
         </ButtonArray>
       </FixBottom>
-    </>
+    </main>
   );
 }

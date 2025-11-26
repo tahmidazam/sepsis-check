@@ -1,6 +1,6 @@
 import { scoreVasoactiveMedicationsSubcomponent } from "@/lib/score-vasoactive-medications-subcomponent/score-vasoactive-medications-subcomponent";
 import { INITIAL_APP_STATE } from "@/models/app-state";
-import { Variables } from "@/models/variables";
+import type { Variables } from "@/models/variables";
 import { describe, expect, it } from "vitest";
 
 describe("scoreVasoactiveMedicationsSubcomponent", () => {

@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Result } from "@/models/result";
+import type { Result } from "@/models/result";
 
 export function MetadataTable({ result }: { result: Result }) {
   return (

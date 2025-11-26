@@ -9,7 +9,7 @@ import {
 import { getUnitLabel } from "@/lib/get-unit-label";
 import { getValueLabel } from "@/lib/get-value-label";
 import { STEPS, STEP_PRIMARY_LABELS } from "@/models/step";
-import { Variables } from "@/models/variables";
+import type { Variables } from "@/models/variables";
 
 export function RecordedVariablesTable({
   variables,

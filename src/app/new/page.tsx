@@ -17,7 +17,7 @@ export default function NewCheckPage() {
   if (!hydrated) return <Loading />;
 
   return (
-    <>
+    <main className="h-screen w-screen">
       <FixTop className="border-b-0">
         <div className="flex flex-col p-4 gap-4">
           <div className="flex flex-col gap-2">
@@ -36,6 +36,6 @@ export default function NewCheckPage() {
       <FixBottom className="bg-muted">
         <Keyboard />
       </FixBottom>
-    </>
+    </main>
   );
 }

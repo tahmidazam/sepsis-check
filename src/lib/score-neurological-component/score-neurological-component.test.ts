@@ -1,6 +1,6 @@
 import { scoreNeurologicalComponent } from "@/lib/score-neurological-component/score-neurological-component";
 import { INITIAL_APP_STATE } from "@/models/app-state";
-import { Variables } from "@/models/variables";
+import type { Variables } from "@/models/variables";
 import { describe, expect, it } from "vitest";
 
 describe("scoreNeurologicalComponent", () => {
