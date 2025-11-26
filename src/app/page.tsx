@@ -9,7 +9,6 @@ import { SafeAreaContentWrapper } from "@/components/layout/safe-area-content-wr
 import { Loading } from "@/components/loading";
 import { NavigationBar } from "@/components/navigation-bar";
 import { ResultsTable } from "@/components/tables/results";
-import { Spinner } from "@/components/ui/spinner";
 import { useHydration } from "@/hooks/use-hydration";
 
 export default function Home() {
