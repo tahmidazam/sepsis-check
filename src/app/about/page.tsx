@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -61,76 +62,91 @@ export default function AboutPage() {
           .
         </p>
 
-        <h2 className="font-medium mt-4 text-xl tracking-tight">Features</h2>
+        <div className="grid grid-cols-2 gap-8">
+          <div className="flex flex-col gap-4">
+            <h2 className="font-medium mt-4 text-xl tracking-tight">
+              Features
+            </h2>
 
-        <ul className="list-disc pl-6 flex flex-col gap-2 marker:text-muted-foreground/50">
-          <li>
-            <p>Cross-platform across iOS and Android</p>
-          </li>
+            <ul className="list-disc pl-6 flex flex-col gap-2 marker:text-muted-foreground/50">
+              <li>
+                <p>Cross-platform across iOS and Android</p>
+              </li>
 
-          <li>
-            <p>UI minimises clinician interactions and optimises speed</p>
-          </li>
+              <li>
+                <p>UI minimises clinician interactions and optimises speed</p>
+              </li>
 
-          <li>
-            <p>
-              Custom data entry UI with support for popular unit conversions
-            </p>
-          </li>
+              <li>
+                <p>
+                  Custom data entry UI with support for popular unit conversions
+                </p>
+              </li>
 
-          <li>
-            <p>Scores can be calculated in the absence of some variables</p>
-          </li>
-        </ul>
+              <li>
+                <p>Scores can be calculated in the absence of some variables</p>
+              </li>
+            </ul>
 
-        <h2 className="font-medium mt-4 text-xl tracking-tight">Roadmap</h2>
+            <h2 className="font-medium mt-4 text-xl tracking-tight">Roadmap</h2>
 
-        <ul className="list-disc pl-6 flex flex-col gap-2 marker:text-muted-foreground/50">
-          <li>
-            <p>Offline support</p>
-          </li>
+            <ul className="list-disc pl-6 flex flex-col gap-2 marker:text-muted-foreground/50">
+              <li>
+                <p>Offline support</p>
+              </li>
 
-          <li>
-            <p>Implementation unit tests</p>
-          </li>
+              <li>
+                <p>Implementation unit tests</p>
+              </li>
 
-          <li>
-            <p>Internationalisation</p>
-          </li>
-        </ul>
+              <li>
+                <p>Internationalisation</p>
+              </li>
+            </ul>
 
-        <h2 className="font-medium mt-4 text-xl tracking-tight">
-          Technologies
-        </h2>
+            <h2 className="font-medium mt-4 text-xl tracking-tight">
+              Technologies
+            </h2>
 
-        <ul className="list-disc pl-6 flex flex-col gap-2 marker:text-muted-foreground/50">
-          <li>
-            <Link
-              href="https://nextjs.org"
-              className="underline underline-offset-4 decoration-border"
-            >
-              Next.js 16 App Router
-            </Link>
-          </li>
+            <ul className="list-disc pl-6 flex flex-col gap-2 marker:text-muted-foreground/50">
+              <li>
+                <Link
+                  href="https://nextjs.org"
+                  className="underline underline-offset-4 decoration-border"
+                >
+                  Next.js 16 App Router
+                </Link>
+              </li>
 
-          <li>
-            <Link
-              href="https://zustand.docs.pmnd.rs/getting-started/introduction"
-              className="underline underline-offset-4 decoration-border"
-            >
-              Zustand
-            </Link>
-          </li>
+              <li>
+                <Link
+                  href="https://zustand.docs.pmnd.rs/getting-started/introduction"
+                  className="underline underline-offset-4 decoration-border"
+                >
+                  Zustand
+                </Link>
+              </li>
 
-          <li>
-            <Link
-              href="https://zod.dev"
-              className="underline underline-offset-4 decoration-border"
-            >
-              Zod
-            </Link>
-          </li>
-        </ul>
+              <li>
+                <Link
+                  href="https://zod.dev"
+                  className="underline underline-offset-4 decoration-border"
+                >
+                  Zod
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="relative">
+            <Image
+              src="/ss-1.png"
+              alt="Screenshot of the SepsisCheck PWA"
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="bg-muted border-t">

@@ -2,7 +2,7 @@ import { convertMeanArterialPressureToBaseUnit } from "@/models/mean-arterial-pr
 import type { Variables } from "@/models/variables";
 
 export function scoreMeanArterialPressureSubcomponent(
-  variables: Variables,
+  variables: Variables
 ): number | null {
   const { meanArterialPressure, ageBand } = variables;
 
@@ -14,7 +14,7 @@ export function scoreMeanArterialPressureSubcomponent(
 
   const meanArterialPressureInBaseUnit = convertMeanArterialPressureToBaseUnit(
     value,
-    unit,
+    unit
   );
 
   if (ageBand === "lessThanOneMonth") {
