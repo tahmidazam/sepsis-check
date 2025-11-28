@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 export default function AboutPage() {
   return (
     <main className="flex flex-col">
-      <div className="min-h-screen  max-w-lg mx-auto flex flex-col p-4 pt-48 gap-4 grow">
+      <div className="min-h-screen  max-w-2xl mx-auto flex flex-col p-4 pt-48 gap-4 grow">
         <div className="mb-8 flex flex-col">
           <p className="text-muted-foreground font-mono">/about</p>
           <h1 className="text-3xl font-medium tracking-tight">SepsisCheck</h1>
@@ -134,7 +134,7 @@ export default function AboutPage() {
       </div>
 
       <div className="bg-muted border-t">
-        <div className="max-w-lg mx-auto flex flex-col gap-4 p-4">
+        <div className="max-w-2xl mx-auto flex flex-col gap-4 p-4">
           <ol className="list-decimal pl-6 text-sm text-muted-foreground">
             <li id="schlapbachInternationalConsensusCriteria2024b">
               <Link
@@ -147,33 +147,37 @@ export default function AboutPage() {
               </Link>
             </li>
           </ol>
-          <Separator />
-          <div className="text-sm text-muted-foreground flex flex-row gap-2 items-center">
-            <Link
-              href="https://www.github.com/tahmidazam/sepsis-check"
-              className="underline underline-offset-4 decoration-border"
-            >
-              Repository
-            </Link>{" "}
-            <div className="w-px bg-muted-foreground h-3"></div>
-            <Link
-              href="https://www.github.com/tahmidazam/sepsis-check"
-              className="underline underline-offset-4 decoration-border"
-            >
-              Privacy policy
-            </Link>
-            <div className="w-px bg-muted-foreground h-3"></div>
-            <Link
-              href="https://www.github.com/tahmidazam/sepsis-check"
-              className="underline underline-offset-4 decoration-border"
-            >
-              License
-            </Link>
-          </div>
 
-          <p className="text-xs text-muted-foreground">
-            Copyright © 2025 Tahmid Azam. All rights reserved.
-          </p>
+          <Separator />
+
+          <div className="flex flex-col gap-4 md:justify-between md:flex-row-reverse">
+            <div className="text-xs text-muted-foreground flex flex-row gap-2 items-center">
+              <Link
+                href="https://www.github.com/tahmidazam/sepsis-check"
+                className="underline underline-offset-4 decoration-border"
+              >
+                Repository
+              </Link>{" "}
+              <div className="w-px bg-muted-foreground h-3"></div>
+              <Link
+                href="https://www.github.com/tahmidazam/sepsis-check"
+                className="underline underline-offset-4 decoration-border"
+              >
+                Privacy policy
+              </Link>
+              <div className="w-px bg-muted-foreground h-3"></div>
+              <Link
+                href="https://www.github.com/tahmidazam/sepsis-check"
+                className="underline underline-offset-4 decoration-border"
+              >
+                License
+              </Link>
+            </div>
+
+            <p className="text-xs text-muted-foreground">
+              Copyright © 2025 Tahmid Azam. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </main>

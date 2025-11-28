@@ -1,15 +1,16 @@
-import { Button } from "@/components/ui/button";
 import { Lightbulb } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function InstallPrompt() {
-  const [isStandalone, setIsStandalone] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isStandalone, setIsStandalone] = useState(true);
 
   useEffect(() => {
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     setIsStandalone(window.matchMedia("(display-mode: standalone)").matches);
   }, []);
 
-  if (isStandalone) return null;
+  if (isStandalone || !isMobile) return null;
 
   return (
     <div className="bg-muted border-b flex flex-row gap-4 justify-between items-center">
