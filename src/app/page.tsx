@@ -8,6 +8,7 @@ import { FixTop } from "@/components/layout/fix-top";
 import { SafeAreaContentWrapper } from "@/components/layout/safe-area-content-wrapper";
 import { Loading } from "@/components/loading";
 import { NavigationBar } from "@/components/navigation-bar";
+import { ResponsiveFooter } from "@/components/responsive-footer";
 import { ResultsTable } from "@/components/tables/results";
 import { useHydration } from "@/hooks/use-hydration";
 
@@ -23,7 +24,10 @@ export default function Home() {
 
       <SafeAreaContentWrapper paddingTop="60px" paddingBottom="64px">
         <InstallPrompt />
-        <ResultsTable className="py-4" />
+
+        <ResultsTable className="pt-4" />
+
+        <ResponsiveFooter />
       </SafeAreaContentWrapper>
 
       <FixBottom>
