@@ -23,6 +23,18 @@ const useAppStore = <T>(selector: (store: AppStore) => T) => {
   return useStore(appStoreContext, useShallow(selector));
 };
 
+/**
+ * Hook to access actions from the app store.
+ *
+ * The hook does not cause rerenders due to stable action references.
+ *
+ * @example Destructure all actions only once from inside a component.
+ * ```tsx
+ * const { a, b } = useAppActions();
+ * ```
+ *
+ * @returns The actions from the app store.
+ */
 export const useAppActions = () => useAppStore((state) => state.actions);
 
 export const useResult = (id: string) =>
@@ -37,6 +49,25 @@ export const useVariables = () => useAppStore((state) => state.variables);
 export const useOmittedVariables = () =>
   useAppStore((state) => state.omittedVariables);
 
+export const useInputValue = () => useAppStore((state) => state.inputValue);
+
+export const useUnitsPickerIsPresented = () =>
+  useAppStore((state) => state.unitsPickerIsPresented);
+
+export const useResults = () => useAppStore((state) => state.results);
+
+export const useStepIsOmitted = () =>
+  useAppStore((state) => state.omittedVariables.includes(state.step));
+
+export const useStepIsEnum = () =>
+  useAppStore((state) => isEnumStep(state.step));
+
+export const useStepIsInteger = () =>
+  useAppStore((state) => isIntegerStep(state.step));
+
+export const useStepIsNumerical = () =>
+  useAppStore((state) => isNumericalStep(state.step));
+
 export const useUnsavedChanges = () =>
   useAppStore((state) => {
     return !deepEqual(
@@ -50,24 +81,6 @@ export const useUnsavedChanges = () =>
       }
     );
   });
-
-export const useStepIsOmitted = () =>
-  useAppStore((state) => state.omittedVariables.includes(state.step));
-
-export const useUnit = () =>
-  useAppStore((state) => {
-    const variable = state.variables[state.step];
-    if (
-      typeof variable === "object" &&
-      variable !== null &&
-      "unit" in variable
-    ) {
-      return variable.unit;
-    }
-    return null;
-  });
-
-export const useInputValue = () => useAppStore((state) => state.inputValue);
 
 export const useUnitLabel = () =>
   useAppStore((state) => getUnitLabel(state.step, state.variables));
@@ -84,9 +97,6 @@ export const useEnumLabel = (): string | null =>
     return labels[value as keyof typeof labels];
   });
 
-export const useStepIsEnum = () =>
-  useAppStore((state) => isEnumStep(state.step));
-
 export const useEnumValue = () =>
   useAppStore((state) => {
     const step = state.step;
@@ -97,18 +107,6 @@ export const useEnumValue = () =>
 
     return state.variables[step as EnumStep] ?? null;
   });
-
-export const useUnitsPickerIsPresented = () =>
-  useAppStore((state) => state.unitsPickerIsPresented);
-
-export const useDecimalPresentInInputValue = () =>
-  useAppStore((state) => state.inputValue.includes("."));
-
-export const useStepIsInteger = () =>
-  useAppStore((state) => isIntegerStep(state.step));
-
-export const useStepIsNumerical = () =>
-  useAppStore((state) => isNumericalStep(state.step));
 
 export const useNumericalValue = () =>
   useAppStore((state) => {
@@ -123,4 +121,18 @@ export const useNumericalValue = () =>
     return null;
   });
 
-export const useResults = () => useAppStore((state) => state.results);
+export const useUnitValue = () =>
+  useAppStore((state) => {
+    const variable = state.variables[state.step];
+    if (
+      typeof variable === "object" &&
+      variable !== null &&
+      "unit" in variable
+    ) {
+      return variable.unit;
+    }
+    return null;
+  });
+
+export const useDecimalPresentInInputValue = () =>
+  useAppStore((state) => state.inputValue.includes("."));

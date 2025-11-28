@@ -1,12 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useAppActions, useStepIsOmitted, useUnit } from "@/hooks/state";
+import { useAppActions, useStepIsOmitted, useUnitValue } from "@/hooks/state";
 
 export function UnitPadToggleButton() {
   const { toggleUnitPad } = useAppActions();
   const stepOmitted = useStepIsOmitted();
-  const unit = useUnit();
+  const unit = useUnitValue();
 
   if (!unit)
     return <Button variant="outline" disabled={true} className="h-12"></Button>;
