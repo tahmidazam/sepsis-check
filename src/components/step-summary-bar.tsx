@@ -1,16 +1,16 @@
+import { useOmittedVariables, useStep, useVariables } from "@/hooks/state";
 import { cn } from "@/lib/utils";
 import {
   isDimensionedStep,
   isNumericalStep,
-  type Step,
   STEPS,
+  type Step,
 } from "@/models/step";
-import { useAppStore } from "@/providers/app-store-provider";
 
 export function StepSummaryBar() {
-  const step = useAppStore((state) => state.step);
-  const omittedVariables = useAppStore((state) => state.omittedVariables);
-  const variables = useAppStore((state) => state.variables);
+  const step = useStep();
+  const omittedVariables = useOmittedVariables();
+  const variables = useVariables();
 
   const stepIsCompleted = (step: Step) => {
     if (isNumericalStep(step)) {
@@ -34,7 +34,7 @@ export function StepSummaryBar() {
               "w-full rounded-full",
               omittedVariables.includes(stepElement) && "bg-muted",
               stepIsCompleted(stepElement) && "bg-green-500",
-              step === stepElement && "bg-primary",
+              step === stepElement && "bg-primary"
             )}
           ></div>
         );

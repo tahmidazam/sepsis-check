@@ -1,13 +1,10 @@
 "use client";
 
-import type { AppStore } from "@/models/app-store";
-import { type AppStoreApi, createAppStore } from "@/state/app-store";
 import { createContext, type ReactNode, useContext, useRef } from "react";
-import { useStore } from "zustand";
-import { useShallow } from "zustand/shallow";
+import { type AppStoreApi, createAppStore } from "@/state/app-store";
 
 export const AppStoreContext = createContext<AppStoreApi | undefined>(
-  undefined,
+  undefined
 );
 
 export interface AppStoreProviderProps {
@@ -25,15 +22,6 @@ export function AppStoreProvider({ children }: AppStoreProviderProps) {
     </AppStoreContext.Provider>
   );
 }
-
-export const useAppStore = <T,>(selector: (store: AppStore) => T) => {
-  const appStoreContext = useContext(AppStoreContext);
-
-  if (!appStoreContext)
-    throw new Error("useAppStore must be used within AppStoreProvider");
-
-  return useStore(appStoreContext, useShallow(selector));
-};
 
 export const useAppStoreContext = () => {
   const appStoreContext = useContext(AppStoreContext);

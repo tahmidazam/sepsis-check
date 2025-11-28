@@ -1,29 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { INITIAL_APP_STATE } from "@/models/app-state";
-import { useAppStore } from "@/providers/app-store-provider";
-import { deepEqual } from "fast-equals";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useAppActions, useUnsavedChanges } from "@/hooks/state";
 
 export function NewCheckButton({
   resetAndStartNewOption = false,
 }: {
   resetAndStartNewOption?: boolean;
 }) {
-  const hasUnsavedChanges = useAppStore((state) => {
-    return !deepEqual(
-      {
-        step: state.step,
-        variables: state.variables,
-      },
-      {
-        step: INITIAL_APP_STATE.step,
-        variables: INITIAL_APP_STATE.variables,
-      },
-    );
-  });
-
-  const reset = useAppStore((state) => state.reset);
+  const hasUnsavedChanges = useUnsavedChanges();
+  const { reset } = useAppActions();
 
   const router = useRouter();
 

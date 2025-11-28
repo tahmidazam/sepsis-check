@@ -1,25 +1,22 @@
 import { Button } from "@/components/ui/button";
+import {
+  useAppActions,
+  useEnumValue,
+  useStep,
+  useStepIsEnum,
+  useStepIsOmitted,
+} from "@/hooks/state";
 import { cn } from "@/lib/utils";
-import { type EnumStep, isEnumStep, STEP_ENUM_CASES } from "@/models/step";
-import { useAppStore } from "@/providers/app-store-provider";
+import { STEP_ENUM_CASES } from "@/models/step";
 
 export function EnumPad() {
-  const stepIsEnum = useAppStore((state) => isEnumStep(state.step));
-  const step = useAppStore((state) => state.step);
+  const stepIsEnum = useStepIsEnum();
+  const step = useStep();
+  const stepIsOmitted = useStepIsOmitted();
+  const { setEnum } = useAppActions();
+  const value = useEnumValue();
+
   const stepEnumCase = STEP_ENUM_CASES[step];
-  const stepIsOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step),
-  );
-  const setEnum = useAppStore((state) => state.setEnum);
-  const value = useAppStore((state) => {
-    const step = state.step;
-
-    if (!isEnumStep(step)) {
-      return null;
-    }
-
-    return state.variables[step as EnumStep] ?? null;
-  });
 
   if (!stepIsEnum || !stepEnumCase || stepIsOmitted) return null;
 
@@ -37,7 +34,7 @@ export function EnumPad() {
             className={cn(
               "h-full relative",
               cases.length < 4 ? "col-span-3" : "col-span-1",
-              selected && "bg-green-50 border-green-500",
+              selected && "bg-green-50 border-green-500"
             )}
             onClick={() => setEnum(key)}
           >

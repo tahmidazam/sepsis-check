@@ -1,22 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { type Key, KEY_CASES } from "@/models/key";
-import { isIntegerStep, isNumericalStep } from "@/models/step";
-import { useAppStore } from "@/providers/app-store-provider";
 import { Delete } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  useAppActions,
+  useDecimalPresentInInputValue,
+  useStepIsInteger,
+  useStepIsNumerical,
+  useStepIsOmitted,
+  useUnitsPickerIsPresented,
+} from "@/hooks/state";
+import { KEY_CASES, type Key } from "@/models/key";
 
 export function NumberPad() {
-  const unitsPickerIsPresented = useAppStore(
-    (state) => state.unitsPickerIsPresented,
-  );
-  const pressKey = useAppStore((state) => state.pressKey);
-  const decimalPresentInInputValue = useAppStore((state) =>
-    state.inputValue.includes("."),
-  );
-  const stepIsInteger = useAppStore((state) => isIntegerStep(state.step));
-  const stepIsNumerical = useAppStore((state) => isNumericalStep(state.step));
-  const stepIsOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step),
-  );
+  const unitsPickerIsPresented = useUnitsPickerIsPresented();
+  const decimalPresentInInputValue = useDecimalPresentInInputValue();
+  const stepIsInteger = useStepIsInteger();
+  const stepIsNumerical = useStepIsNumerical();
+  const stepIsOmitted = useStepIsOmitted();
+
+  const { pressKey } = useAppActions();
 
   if (unitsPickerIsPresented || !stepIsNumerical || stepIsOmitted) return null;
 

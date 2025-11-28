@@ -5,7 +5,7 @@ export function ExportJSONButton({
   filename,
   className,
 }: {
-  json: any;
+  json: unknown;
   filename: string;
   className?: string;
 }) {

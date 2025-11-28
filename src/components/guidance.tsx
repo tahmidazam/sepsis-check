@@ -1,7 +1,7 @@
-import type { Diagnosis } from "@/models/diagnosis";
 import { ChevronDown, RotateCw } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { Diagnosis } from "@/models/diagnosis";
 
 const STEPS: string[] = [
   "Obtain IV/IO access",
@@ -52,7 +52,7 @@ export default function Guidance({ diagnosis }: { diagnosis: Diagnosis }) {
 
       <div className="flex flex-col gap-2">
         {STEPS.map((step, index) => (
-          <GuidanceStep key={index} number={String(index + 1)} label={step} />
+          <GuidanceStep key={step} number={String(index + 1)} label={step} />
         ))}
       </div>
 
@@ -64,8 +64,8 @@ export default function Guidance({ diagnosis }: { diagnosis: Diagnosis }) {
       ></GuidanceStep>
 
       <ul className=" text-sm flex flex-col pl-12 gap-1">
-        {CONTINUOUS_REASSESSMENT_STEPS.map((step, index) => (
-          <li key={index}>{step}</li>
+        {CONTINUOUS_REASSESSMENT_STEPS.map((step) => (
+          <li key={step}>{step}</li>
         ))}
       </ul>
     </div>

@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -7,13 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useResults } from "@/hooks/state";
 import { cn } from "@/lib/utils";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
-import { useAppStore } from "@/providers/app-store-provider";
-import { useRouter } from "next/navigation";
 
 export function ResultsTable({ className }: { className?: string }) {
-  const results = useAppStore((state) => state.results);
+  const results = useResults();
   const router = useRouter();
 
   if (results.length === 0) return null;

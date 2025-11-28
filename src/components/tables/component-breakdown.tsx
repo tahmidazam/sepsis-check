@@ -48,7 +48,7 @@ export function ComponentBreakdownTable({ result }: { result: Result }) {
 
         <TableBody>
           {Object.entries(COMPONENT_RESULT_KEY_MAP).map(
-            ([component, { label, resultSchemaKey }]) => {
+            ([_component, { label, resultSchemaKey }]) => {
               return (
                 <TableRow key={label}>
                   <TableCell>
@@ -59,7 +59,7 @@ export function ComponentBreakdownTable({ result }: { result: Result }) {
                   </TableCell>
                 </TableRow>
               );
-            },
+            }
           )}
         </TableBody>
 

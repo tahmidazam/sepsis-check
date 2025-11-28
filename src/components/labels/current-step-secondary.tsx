@@ -1,9 +1,8 @@
+import { useStep } from "@/hooks/state";
 import { STEP_SECONDARY_LABELS } from "@/models/step";
-import { useAppStore } from "@/providers/app-store-provider";
 
 export function CurrentStepSecondaryLabel() {
-  const step = useAppStore((state) => state.step);
-
+  const step = useStep();
   const label = STEP_SECONDARY_LABELS[step];
 
   if (!label) return null;

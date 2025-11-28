@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { useAppStore } from "@/providers/app-store-provider";
 import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAppActions, useErrorMessage } from "@/hooks/state";
 
 export function ErrorBanner() {
-  const errorMessage = useAppStore((state) => state.errorMessage);
-  const clearInput = useAppStore((state) => state.clearInput);
+  const errorMessage = useErrorMessage();
+  const { clearInput } = useAppActions();
 
   if (!errorMessage || errorMessage.length === 0) return null;
 

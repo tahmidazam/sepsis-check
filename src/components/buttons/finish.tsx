@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { STEPS } from "@/models/step";
-import { useAppStore } from "@/providers/app-store-provider";
 import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useAppActions, useStep } from "@/hooks/state";
+import { STEPS } from "@/models/step";
 
 export function FinishButton() {
   const router = useRouter();
-  const step = useAppStore((state) => state.step);
-  const finish = useAppStore((state) => state.finish);
+  const step = useStep();
+  const { finish } = useAppActions();
 
   if (STEPS.indexOf(step) !== STEPS.length - 1) {
     return null;

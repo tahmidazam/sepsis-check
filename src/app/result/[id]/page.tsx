@@ -1,5 +1,7 @@
 "use client";
 
+import { notFound } from "next/navigation";
+import { use } from "react";
 import { HomeButton } from "@/components/buttons/home";
 import { NewCheckButton } from "@/components/buttons/new-check";
 import { ExportOptions } from "@/components/export-options";
@@ -13,16 +15,14 @@ import { NavigationBar } from "@/components/navigation-bar";
 import { ComponentBreakdownTable } from "@/components/tables/component-breakdown";
 import { MetadataTable } from "@/components/tables/metadata";
 import { RecordedVariablesTable } from "@/components/tables/recorded-variables";
+import { useResult } from "@/hooks/state";
 import { useHydration } from "@/hooks/use-hydration";
 import { DIAGNOSIS_LABELS } from "@/models/diagnosis";
-import { useAppStore } from "@/providers/app-store-provider";
-import { notFound } from "next/navigation";
-import { use } from "react";
 
 export default function ResultsPage(props: PageProps<"/result/[id]">) {
   const hydrated = useHydration();
   const { id } = use(props.params);
-  const result = useAppStore((state) => state.results.find((i) => i.id === id));
+  const result = useResult(id);
 
   if (!hydrated) return <Loading />;
   if (!result) return notFound();

@@ -1,29 +1,21 @@
 import { Button } from "@/components/ui/button";
+import {
+  useAppActions,
+  useNumericalValue,
+  useStep,
+  useStepIsOmitted,
+  useUnitsPickerIsPresented,
+} from "@/hooks/state";
 import { cn } from "@/lib/utils";
 import { STEP_UNIT_CASES } from "@/models/step";
-import { useAppStore } from "@/providers/app-store-provider";
 
 export function UnitPad() {
-  const unitsPickerIsPresented = useAppStore(
-    (state) => state.unitsPickerIsPresented,
-  );
-  const step = useAppStore((state) => state.step);
-  const stepOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step),
-  );
-  const value = useAppStore((state) => {
-    const variable = state.variables[state.step];
-    if (
-      typeof variable === "object" &&
-      variable !== null &&
-      "unit" in variable
-    ) {
-      return variable.unit;
-    }
-    return null;
-  });
+  const unitsPickerIsPresented = useUnitsPickerIsPresented();
+  const step = useStep();
+  const stepOmitted = useStepIsOmitted();
+  const value = useNumericalValue();
 
-  const setUnit = useAppStore((state) => state.setUnit);
+  const { setUnit } = useAppActions();
 
   const unitCases = STEP_UNIT_CASES[step];
 

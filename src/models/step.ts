@@ -1,9 +1,5 @@
-import {
-  AGE_BAND_LABELS,
-  AGE_BANDS,
-  type AgeBand,
-  ageBandEnum,
-} from "@/models/age-band";
+import z from "zod";
+import { AGE_BAND_LABELS, AGE_BANDS, type AgeBand } from "@/models/age-band";
 import {
   D_DIMER_CONCENTRATION_UNIT_CASES,
   type DDimerConcentrationUnit,
@@ -34,7 +30,6 @@ import {
   RESPIRATORY_SUPPORT_LABELS,
   type RespiratorySupport,
 } from "@/models/respiratory-support";
-import z from "zod";
 
 export const STEPS = [
   "ageBand",

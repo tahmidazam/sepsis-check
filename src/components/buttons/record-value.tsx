@@ -1,12 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { useAppStore } from "@/providers/app-store-provider";
+import { useAppActions, useStepIsOmitted } from "@/hooks/state";
 
 export function RecordValueButton() {
-  const undoOmission = useAppStore((state) => state.toggleStepOmission);
-
-  const stepIsOmitted = useAppStore((state) =>
-    state.omittedVariables.includes(state.step),
-  );
+  const { toggleStepOmission } = useAppActions();
+  const stepIsOmitted = useStepIsOmitted();
 
   if (!stepIsOmitted) return null;
 
@@ -16,7 +13,7 @@ export function RecordValueButton() {
         This variable was previously left blank. Would you like to record a
         value?
       </p>
-      <Button className="col-span-3 w-full h-12" onClick={undoOmission}>
+      <Button className="col-span-3 w-full h-12" onClick={toggleStepOmission}>
         Record Value
       </Button>
     </>
