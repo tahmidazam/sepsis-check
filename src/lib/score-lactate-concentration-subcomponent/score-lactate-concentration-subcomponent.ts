@@ -1,4 +1,4 @@
-import { convertLactateConcentrationToBaseUnit } from "@/models/lactate-conc";
+import { convertLactateConcentrationToBaseUnit } from "@/models/units/lactate-concentration";
 import type { Variables } from "@/models/variables";
 
 export function scoreLactateSubcomponent(variables: Variables): number | null {
@@ -12,7 +12,7 @@ export function scoreLactateSubcomponent(variables: Variables): number | null {
 
   const lactateConcentrationInBaseUnit = convertLactateConcentrationToBaseUnit(
     value,
-    unit,
+    unit
   );
 
   if (lactateConcentrationInBaseUnit >= 11) {

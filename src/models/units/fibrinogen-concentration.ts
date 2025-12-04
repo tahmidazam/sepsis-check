@@ -3,7 +3,7 @@ import z from "zod";
 export const FIBRINOGEN_CONCENTRATION_UNIT_CASES = ["g/L", "mg/dL"] as const;
 
 export const fibrinogenConcentrationUnitEnum = z.enum(
-  FIBRINOGEN_CONCENTRATION_UNIT_CASES,
+  FIBRINOGEN_CONCENTRATION_UNIT_CASES
 );
 
 export type FibrinogenConcentrationUnit = z.infer<
@@ -15,7 +15,7 @@ export const FIBRINOGEN_CONCENTRATION_BASE_UNIT: FibrinogenConcentrationUnit =
 
 export function convertFibrinogenConcentrationToBaseUnit(
   value: number,
-  unit: FibrinogenConcentrationUnit,
+  unit: FibrinogenConcentrationUnit
 ): number {
   switch (unit) {
     case "g/L":
@@ -24,8 +24,3 @@ export function convertFibrinogenConcentrationToBaseUnit(
       return value;
   }
 }
-
-export const fibrinogenConcentrationSchema = z.object({
-  value: z.coerce.number().min(0).nullish(),
-  unit: fibrinogenConcentrationUnitEnum,
-});

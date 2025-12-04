@@ -1,5 +1,5 @@
-import { convertPlateletConcentrationToBaseUnit } from "@/models/platelet-concentration-unit";
 import type { Variables } from "@/models/variables";
+import { convertPlateletConcentrationToBaseUnit } from "../convert-platelet-concentration-to-base-unit/convert-platelet-concentration-to-base-unit";
 
 export function scorePlateletSubcomponent(variables: Variables): number | null {
   const { plateletConcentration } = variables;

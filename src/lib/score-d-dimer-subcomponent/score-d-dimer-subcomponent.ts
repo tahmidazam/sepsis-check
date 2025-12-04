@@ -1,4 +1,4 @@
-import { convertDDimerConcentrationToBaseUnit } from "@/models/d-dimer-concentration-unit";
+import { convertDDimerConcentrationToBaseUnit } from "@/lib/convert-d-dimer-concentration-to-base-unit/convert-d-dimer-concentration-to-base-unit";
 import type { Variables } from "@/models/variables";
 
 export function scoreDDimerSubcomponent(variables: Variables): number | null {
@@ -12,7 +12,7 @@ export function scoreDDimerSubcomponent(variables: Variables): number | null {
 
   const dDimerConcentrationInBaseUnit = convertDDimerConcentrationToBaseUnit(
     value,
-    unit,
+    unit
   );
 
   if (dDimerConcentrationInBaseUnit > 2) {

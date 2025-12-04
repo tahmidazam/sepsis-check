@@ -1,4 +1,4 @@
-import { convertMeanArterialPressureToBaseUnit } from "@/models/mean-arterial-pressure";
+import { convertMeanArterialPressureToBaseUnit } from "@/models/units/mean-arterial-pressure";
 import type { Variables } from "@/models/variables";
 
 export function scoreMeanArterialPressureSubcomponent(

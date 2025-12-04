@@ -1,8 +1,8 @@
-import { convertFibrinogenConcentrationToBaseUnit } from "@/models/fibrinogen-concentration-unit";
+import { convertFibrinogenConcentrationToBaseUnit } from "@/models/units/fibrinogen-concentration";
 import type { Variables } from "@/models/variables";
 
 export function scoreFibrinogenSubcomponent(
-  variables: Variables,
+  variables: Variables
 ): number | null {
   const { fibrinogenConcentration } = variables;
 

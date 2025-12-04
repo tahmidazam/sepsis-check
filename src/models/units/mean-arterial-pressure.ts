@@ -3,7 +3,7 @@ import z from "zod";
 export const MEAN_ARTERIAL_PRESSURE_UNIT_CASES = ["kPa", "mmHg"] as const;
 
 export const meanArterialPressureUnitEnum = z.enum(
-  MEAN_ARTERIAL_PRESSURE_UNIT_CASES,
+  MEAN_ARTERIAL_PRESSURE_UNIT_CASES
 );
 
 export type MeanArterialPressureUnit = z.infer<
@@ -15,7 +15,7 @@ export const MEAN_ARTERIAL_PRESSURE_BASE_UNIT: MeanArterialPressureUnit =
 
 export function convertMeanArterialPressureToBaseUnit(
   value: number,
-  unit: MeanArterialPressureUnit,
+  unit: MeanArterialPressureUnit
 ): number {
   switch (unit) {
     case "kPa":
@@ -24,8 +24,3 @@ export function convertMeanArterialPressureToBaseUnit(
       return value;
   }
 }
-
-export const meanArterialPressureSchema = z.object({
-  value: z.coerce.number().min(0).nullish(),
-  unit: meanArterialPressureUnitEnum,
-});

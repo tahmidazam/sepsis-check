@@ -1,12 +1,12 @@
-import { D_DIMER_CONCENTRATION_BASE_UNIT } from "@/models/d-dimer-concentration-unit";
-import { FIBRINOGEN_CONCENTRATION_BASE_UNIT } from "@/models/fibrinogen-concentration-unit";
-import { LACTATE_CONCENTRATION_BASE_UNIT } from "@/models/lactate-conc";
-import { MEAN_ARTERIAL_PRESSURE_BASE_UNIT } from "@/models/mean-arterial-pressure";
-import { PLATELET_CONCENTRATION_BASE_UNIT } from "@/models/platelet-concentration-unit";
+import z from "zod";
 import { resultSchema } from "@/models/result";
 import { stepEnum } from "@/models/step";
+import { FIBRINOGEN_CONCENTRATION_BASE_UNIT } from "@/models/units/fibrinogen-concentration";
+import { LACTATE_CONCENTRATION_BASE_UNIT } from "@/models/units/lactate-concentration";
+import { MEAN_ARTERIAL_PRESSURE_BASE_UNIT } from "@/models/units/mean-arterial-pressure";
+import { PLATELET_CONCENTRATION_BASE_UNIT } from "@/models/units/platelet-concentration";
 import { variablesSchema } from "@/models/variables";
-import z from "zod";
+import { D_DIMER_CONCENTRATION_BASE_UNIT } from "./units/d-dimer-concentration";
 
 export const appStateSchema = z.object({
   step: stepEnum,

@@ -1,26 +1,6 @@
 import z from "zod";
 import { AGE_BAND_LABELS, AGE_BANDS, type AgeBand } from "@/models/age-band";
 import {
-  D_DIMER_CONCENTRATION_UNIT_CASES,
-  type DDimerConcentrationUnit,
-} from "@/models/d-dimer-concentration-unit";
-import {
-  FIBRINOGEN_CONCENTRATION_UNIT_CASES,
-  type FibrinogenConcentrationUnit,
-} from "@/models/fibrinogen-concentration-unit";
-import {
-  LACTATE_CONCENTRATION_UNIT_CASES,
-  type LactateConcentrationUnit,
-} from "@/models/lactate-conc";
-import {
-  MEAN_ARTERIAL_PRESSURE_UNIT_CASES,
-  type MeanArterialPressureUnit,
-} from "@/models/mean-arterial-pressure";
-import {
-  PLATELET_CONCENTRATION_UNIT_CASES,
-  type PlateletConcentrationUnit,
-} from "@/models/platelet-concentration-unit";
-import {
   PUPIL_STATE_CASES,
   PUPIL_STATE_LABELS,
   type PupilState,
@@ -30,6 +10,26 @@ import {
   RESPIRATORY_SUPPORT_LABELS,
   type RespiratorySupport,
 } from "@/models/respiratory-support";
+import {
+  FIBRINOGEN_CONCENTRATION_UNIT_CASES,
+  type FibrinogenConcentrationUnit,
+} from "@/models/units/fibrinogen-concentration";
+import {
+  LACTATE_CONCENTRATION_UNIT_CASES,
+  type LactateConcentrationUnit,
+} from "@/models/units/lactate-concentration";
+import {
+  MEAN_ARTERIAL_PRESSURE_UNIT_CASES,
+  type MeanArterialPressureUnit,
+} from "@/models/units/mean-arterial-pressure";
+import {
+  PLATELET_CONCENTRATION_UNIT_CASES,
+  type PlateletConcentrationUnit,
+} from "@/models/units/platelet-concentration";
+import {
+  D_DIMER_CONCENTRATION_UNIT_CASES,
+  type DDimerConcentrationUnit,
+} from "./units/d-dimer-concentration";
 
 export const STEPS = [
   "ageBand",
