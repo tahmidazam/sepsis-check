@@ -25,70 +25,89 @@ export const createAppStore = (
   return createStore<AppStore>()(
     devtools(
       persist(
-        (set, get) => ({
-          ...initialAppState,
-          actions: {
-            setStep: (newStep: Step) => {
-              set((state) => {
-                get().actions.clearErrorMessage();
+        (set, get) => {
+          const setStep = (newStep: Step) => {
+            set((state) => {
+              get().actions.clearErrorMessage();
 
-                var newInputValue = getNewInputValue(state, newStep);
+              var newInputValue = getNewInputValue(state, newStep);
 
-                if (state.inputValue !== "") {
-                  if (isNumericalStep(state.step)) {
-                    if (isDimensionedStep(state.step)) {
-                      const value = variablesSchema.shape[
-                        state.step
-                      ].shape.value.safeParse(state.inputValue);
+              if (state.inputValue !== "") {
+                if (isNumericalStep(state.step)) {
+                  if (isDimensionedStep(state.step)) {
+                    const value = variablesSchema.shape[
+                      state.step
+                    ].shape.value.safeParse(state.inputValue);
 
-                      if (!value.success) {
-                        return {
-                          errorMessage: z
-                            .prettifyError(value.error)
-                            .replaceAll("✖ ", ""),
-                        };
-                      }
-
+                    if (!value.success) {
                       return {
-                        step: newStep,
-                        unitsPickerIsPresented: false,
-                        inputValue: newInputValue ?? "",
-                        variables: {
-                          ...state.variables,
-                          [state.step]: {
-                            ...state.variables[state.step],
-                            value: value.data,
-                          },
-                        },
+                        errorMessage: z
+                          .prettifyError(value.error)
+                          .replaceAll("✖ ", ""),
                       };
                     }
-                    if (isDimensionlessStep(state.step)) {
-                      const value = variablesSchema.shape[state.step].safeParse(
-                        state.inputValue
-                      );
 
-                      if (!value.success) {
-                        return {
-                          errorMessage: z
-                            .prettifyError(value.error)
-                            .replaceAll("✖ ", ""),
-                        };
-                      }
-
-                      return {
-                        step: newStep,
-                        unitsPickerIsPresented: false,
-                        inputValue: newInputValue ?? "",
-                        variables: {
-                          ...state.variables,
-                          [state.step]: value.data,
+                    return {
+                      step: newStep,
+                      unitsPickerIsPresented: false,
+                      inputValue: newInputValue ?? "",
+                      variables: {
+                        ...state.variables,
+                        [state.step]: {
+                          ...state.variables[state.step],
+                          value: value.data,
                         },
+                      },
+                    };
+                  }
+                  if (isDimensionlessStep(state.step)) {
+                    const value = variablesSchema.shape[state.step].safeParse(
+                      state.inputValue
+                    );
+
+                    if (!value.success) {
+                      return {
+                        errorMessage: z
+                          .prettifyError(value.error)
+                          .replaceAll("✖ ", ""),
                       };
                     }
+
+                    return {
+                      step: newStep,
+                      unitsPickerIsPresented: false,
+                      inputValue: newInputValue ?? "",
+                      variables: {
+                        ...state.variables,
+                        [state.step]: value.data,
+                      },
+                    };
                   }
                 }
+              }
 
-                if (isNumericalStep(state.step)) {
+              if (isNumericalStep(state.step)) {
+                const isOmitted = state.omittedVariables.includes(state.step);
+
+                return {
+                  step: newStep,
+                  unitsPickerIsPresented: false,
+                  inputValue: newInputValue ?? "",
+                  ...(!isOmitted
+                    ? {
+                        omittedVariables: [
+                          ...state.omittedVariables,
+                          state.step,
+                        ],
+                      }
+                    : {}),
+                };
+              }
+
+              if (isEnumStep(state.step)) {
+                const value = state.variables[state.step] ?? null;
+
+                if (value === null) {
                   const isOmitted = state.omittedVariables.includes(state.step);
 
                   return {
@@ -105,176 +124,181 @@ export const createAppStore = (
                       : {}),
                   };
                 }
+              }
 
-                if (isEnumStep(state.step)) {
-                  const value = state.variables[state.step] ?? null;
+              return {
+                step: newStep,
+                unitsPickerIsPresented: false,
+                inputValue: newInputValue ?? "",
+              };
+            });
+          };
 
-                  if (value === null) {
-                    const isOmitted = state.omittedVariables.includes(
-                      state.step
-                    );
+          const reset = () =>
+            set((state) => ({
+              ...initialAppState,
+              results: state.results,
+              errorMessage: null,
+            }));
 
-                    return {
-                      step: newStep,
-                      unitsPickerIsPresented: false,
-                      inputValue: newInputValue ?? "",
-                      ...(!isOmitted
-                        ? {
-                            omittedVariables: [
-                              ...state.omittedVariables,
-                              state.step,
-                            ],
-                          }
-                        : {}),
-                    };
-                  }
-                }
+          const toggleUnitPad = () =>
+            set((state) => ({
+              unitsPickerIsPresented: !state.unitsPickerIsPresented,
+            }));
 
-                return {
-                  step: newStep,
-                  unitsPickerIsPresented: false,
-                  inputValue: newInputValue ?? "",
-                };
-              });
-            },
-            reset: () =>
-              set((state) => ({
-                ...initialAppState,
-                results: state.results,
-                errorMessage: null,
-              })),
-            toggleUnitPad: () =>
-              set((state) => ({
-                unitsPickerIsPresented: !state.unitsPickerIsPresented,
-              })),
-            setUnit: (unit: string) =>
-              set((state) => {
-                if (!isDimensionedStep(state.step)) return {};
+          const setUnit = (unit: string) =>
+            set((state) => {
+              if (!isDimensionedStep(state.step)) return {};
 
-                return {
-                  variables: {
-                    ...state.variables,
-                    [state.step]: {
-                      ...state.variables[state.step],
-                      unit,
-                    },
+              return {
+                variables: {
+                  ...state.variables,
+                  [state.step]: {
+                    ...state.variables[state.step],
+                    unit,
                   },
+                },
+                unitsPickerIsPresented: false,
+              };
+            });
+
+          const toggleStepOmission = () =>
+            set((state) => {
+              const isOmitted = state.omittedVariables.includes(state.step);
+
+              if (isOmitted) {
+                const newOmittedVariables = state.omittedVariables.filter(
+                  (variable) => variable !== state.step
+                );
+                return {
+                  omittedVariables: newOmittedVariables,
                   unitsPickerIsPresented: false,
                 };
-              }),
-            toggleStepOmission: () =>
-              set((state) => {
-                const isOmitted = state.omittedVariables.includes(state.step);
-
-                if (isOmitted) {
-                  const newOmittedVariables = state.omittedVariables.filter(
-                    (variable) => variable !== state.step
-                  );
-                  return {
-                    omittedVariables: newOmittedVariables,
-                    unitsPickerIsPresented: false,
-                  };
-                } else {
-                  const newOmittedVariables = [
-                    ...state.omittedVariables,
-                    state.step,
-                  ];
-
-                  const currentIndex = STEPS.indexOf(state.step);
-
-                  if (currentIndex === STEPS.length - 1) {
-                    return {
-                      omittedVariables: newOmittedVariables,
-                      unitsPickerIsPresented: false,
-                    };
-                  }
-
-                  const nextIndex = (currentIndex + 1) % STEPS.length;
-
-                  return {
-                    omittedVariables: newOmittedVariables,
-                    step: STEPS[nextIndex],
-                    unitsPickerIsPresented: false,
-                  };
-                }
-              }),
-            pressKey: (key: Key) =>
-              set((state) => {
-                if (key === "backspace")
-                  return { inputValue: state.inputValue.slice(0, -1) };
-
-                return { inputValue: state.inputValue + key };
-              }),
-            setErrorMessage: (message: string) =>
-              set(() => ({ errorMessage: message })),
-            clearErrorMessage: () => set(() => ({ errorMessage: null })),
-            setEnum: (value: string) =>
-              set((state) => {
-                if (!isEnumStep(state.step)) return {};
-
-                const enumCase = STEP_ENUM_CASES[state.step];
-
-                if (
-                  !enumCase ||
-                  !(value in enumCase.labels) ||
-                  !enumCase.cases.includes(
-                    value as keyof typeof enumCase.labels
-                  )
-                )
-                  return {};
+              } else {
+                const newOmittedVariables = [
+                  ...state.omittedVariables,
+                  state.step,
+                ];
 
                 const currentIndex = STEPS.indexOf(state.step);
-                const newIndex = (currentIndex + 1) % STEPS.length;
-                const newStep = STEPS[newIndex];
 
                 if (currentIndex === STEPS.length - 1) {
                   return {
-                    variables: {
-                      ...state.variables,
-                      [state.step]: value,
-                    },
+                    omittedVariables: newOmittedVariables,
+                    unitsPickerIsPresented: false,
                   };
                 }
 
+                const nextIndex = (currentIndex + 1) % STEPS.length;
+
+                return {
+                  omittedVariables: newOmittedVariables,
+                  step: STEPS[nextIndex],
+                  unitsPickerIsPresented: false,
+                };
+              }
+            });
+
+          const pressKey = (key: Key) =>
+            set((state) => {
+              if (key === "backspace")
+                return { inputValue: state.inputValue.slice(0, -1) };
+
+              return { inputValue: state.inputValue + key };
+            });
+
+          const setErrorMessage = (message: string) =>
+            set(() => ({ errorMessage: message }));
+
+          const clearErrorMessage = () => set(() => ({ errorMessage: null }));
+
+          const setEnum = (value: string) =>
+            set((state) => {
+              if (!isEnumStep(state.step)) return {};
+
+              const enumCase = STEP_ENUM_CASES[state.step];
+
+              if (
+                !enumCase ||
+                !(value in enumCase.labels) ||
+                !enumCase.cases.includes(value as keyof typeof enumCase.labels)
+              )
+                return {};
+
+              const currentIndex = STEPS.indexOf(state.step);
+              const newIndex = (currentIndex + 1) % STEPS.length;
+              const newStep = STEPS[newIndex];
+
+              if (currentIndex === STEPS.length - 1) {
                 return {
                   variables: {
                     ...state.variables,
                     [state.step]: value,
                   },
-                  step: newStep,
                 };
-              }),
-            finish: () => {
-              const id = uuidv4();
+              }
 
-              set((state) => {
-                const variables = removeOmittedVariables(
-                  state.variables,
-                  state.omittedVariables
-                );
-                return {
-                  results: [
-                    ...state.results,
-                    {
-                      id,
-                      timestamp: Date.now(),
-                      variables,
-                      ...scoreVariables(variables),
-                    },
-                  ],
-                };
-              });
+              return {
+                variables: {
+                  ...state.variables,
+                  [state.step]: value,
+                },
+                step: newStep,
+              };
+            });
 
-              get().actions.reset();
+          const finish = () => {
+            const id = uuidv4();
 
-              return id;
-            },
-            clearInput: () =>
-              set(() => ({ inputValue: "", errorMessage: null })),
-          },
-        }),
+            set((state) => {
+              const variables = removeOmittedVariables(
+                state.variables,
+                state.omittedVariables
+              );
+              return {
+                results: [
+                  ...state.results,
+                  {
+                    id,
+                    timestamp: Date.now(),
+                    variables,
+                    ...scoreVariables(variables),
+                  },
+                ],
+              };
+            });
+
+            get().actions.reset();
+
+            return id;
+          };
+
+          const clearInput = () =>
+            set(() => ({ inputValue: "", errorMessage: null }));
+
+          const actions = {
+            setStep,
+            reset,
+            toggleUnitPad,
+            setUnit,
+            toggleStepOmission,
+            pressKey,
+            setErrorMessage,
+            clearErrorMessage,
+            setEnum,
+            finish,
+            clearInput,
+          };
+
+          return { ...initialAppState, actions };
+        },
         {
           name: "app-store",
+          version: 1,
+          partialize: (state) => {
+            const { actions, ...persisted } = state;
+            return persisted;
+          },
         }
       )
     )
