@@ -112,26 +112,27 @@ export type EnumStep = Extract<Step, (typeof ENUM_STEP_CASES)[number]>;
 
 export const STEP_PRIMARY_LABELS: Record<Step, string> = {
   ageBand: "Age band",
-  saturationOfPeripheralOxygen: "SpO2",
-  fractionOfInspiredOxygen: "FiO2",
+  saturationOfPeripheralOxygen: "Saturation of peripheral oxygen (SpO₂)",
+  fractionOfInspiredOxygen: "Fraction of inspired oxygen (FiO₂)",
   respiratorySupport: "Respiratory support",
-  vasoactiveMedicationCount: "Vasoactive medications",
+  vasoactiveMedicationCount: "Number of vasoactive medications",
   lactateConcentration: "Lactate",
-  meanArterialPressure: "MAP",
+  meanArterialPressure: "Mean arterial pressure (MAP)",
   plateletConcentration: "Platelet",
-  internationalNormalisedRatio: "INR",
+  internationalNormalisedRatio: "International normalised ratio (INR)",
   dDimerConcentration: "D-dimer",
   fibrinogenConcentration: "Fibrinogen",
-  glasgowComaScale: "GCS",
+  glasgowComaScale: "Glasgow coma scale (GCS)",
   pupilState: "Pupil state",
 } as const;
 
 export const STEP_SECONDARY_LABELS: Record<Step, string | null> = {
   ageBand:
-    "Age is not adjusted for prematurity, and the criteria do not apply to birth hospitalisations, children with postconcenptional age <37 weeks, or those aged ≥18 years.",
-  saturationOfPeripheralOxygen: null,
-  fractionOfInspiredOxygen: null,
-  respiratorySupport: null,
+    "Age is not adjusted for prematurity, and the criteria do not apply to birth hospitalisations, children with postconceptional age <37 weeks, or those aged ≥18 years.",
+  saturationOfPeripheralOxygen: "Enter a percentage value between 0 and 100%.",
+  fractionOfInspiredOxygen: "Enter a decimal value between 0 and 1.",
+  respiratorySupport:
+    "Non-invasive support includes supplemental oxygen, high flow nasal cannulas and non-invasive positive pressure ventilation.",
   vasoactiveMedicationCount:
     "Vasoactive medications include any dose of adrenaline, noradrenaline, dopamine, dobutamine, milrinone, and/or vasopressin (for shock).",
   lactateConcentration: "Lactate can be arterial or venous.",

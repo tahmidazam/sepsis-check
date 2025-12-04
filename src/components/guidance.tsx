@@ -12,27 +12,15 @@ const STEPS: string[] = [
   "Start vasoactive agents if shock persists",
 ];
 
-const CONTINUOUS_REASSESSMENT_STEPS = [
-  "Respiratory support",
-  "Assess for Paediatric Acute Respiratory Distress Syndrome",
-  "Infectious source control",
-  "Fluid and vasoactive titration",
-  "Advanced haemodynamic monitoring if shock persists",
-  "+/- hydrocortisone for refractory shock (may produce benefit or harm)",
-  "Nutritional support",
-  "Avoid hypoglycaemia",
-  "Antimicrobial stewardship",
-  "VA or VV ECLS for refractory shock or oxygenation/ventilation failure (after addressing other causes of shcok and respiratory failure",
-];
-
 export default function Guidance({ diagnosis }: { diagnosis: Diagnosis }) {
   if (diagnosis === "no-sepsis" || diagnosis === "no-diagnosis") return null;
 
   return (
     <div className="flex flex-col gap-4 px-4 w-full max-w-lg mx-auto">
       <div className="flex flex-col">
-        <p className="font-medium">
-          Initial Resuscitation Algorithm for Children
+        <p className="font-medium text-pretty">
+          Consider management according to the SSC Initial Resuscitation
+          Algorithm for Children
         </p>
         <p className="text-sm text-muted-foreground">
           Adapted from{" "}
@@ -46,7 +34,15 @@ export default function Guidance({ diagnosis }: { diagnosis: Diagnosis }) {
           <span className="italic">
             Fluid and Vasoactive-Inotrope Management
           </span>{" "}
-          algorithm for fluid boluses and vasoactive agents.
+          algorithm for fluid boluses and vasoactive agents. For further
+          management advice see the{" "}
+          <Link
+            href="https://www.sccm.org/SCCM/media/SCCM/PDFs/Initial-Resuscitation-Algorithm-for-Children.pdf"
+            className="underline-offset-4 underline decoration-border"
+          >
+            full algorithm
+          </Link>
+          .
         </p>
       </div>
 
@@ -55,19 +51,6 @@ export default function Guidance({ diagnosis }: { diagnosis: Diagnosis }) {
           <GuidanceStep key={step} number={String(index + 1)} label={step} />
         ))}
       </div>
-
-      <ChevronDown className="w-8 h-8 text-destructive" />
-
-      <GuidanceStep
-        number={<RotateCw className="size-4" />}
-        label="Begin Continuous Reassessment"
-      ></GuidanceStep>
-
-      <ul className=" text-sm flex flex-col pl-12 gap-1">
-        {CONTINUOUS_REASSESSMENT_STEPS.map((step) => (
-          <li key={step}>{step}</li>
-        ))}
-      </ul>
     </div>
   );
 }

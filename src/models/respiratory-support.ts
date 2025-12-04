@@ -12,6 +12,6 @@ export type RespiratorySupport = z.infer<typeof respiratorySupportEnum>;
 
 export const RESPIRATORY_SUPPORT_LABELS: Record<RespiratorySupport, string> = {
   none: "None",
-  "non-invasive": "Non-invasive",
-  invasive: "Invasive",
+  "non-invasive": "Non-invasive support",
+  invasive: "Invasive mechanical ventilation",
 } as const;
