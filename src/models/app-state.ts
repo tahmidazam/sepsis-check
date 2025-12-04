@@ -10,6 +10,7 @@ import { D_DIMER_CONCENTRATION_BASE_UNIT } from "./units/d-dimer-concentration";
 
 export const appStateSchema = z.object({
   step: stepEnum,
+  loading: z.boolean(),
   unitsPickerIsPresented: z.boolean(),
   variables: variablesSchema,
   omittedVariables: z.array(stepEnum),
@@ -24,6 +25,7 @@ export const INITIAL_APP_STATE: AppState = {
   step: "ageBand",
   results: [],
   inputValue: "",
+  loading: false,
   variables: {
     lactateConcentration: {
       unit: LACTATE_CONCENTRATION_BASE_UNIT,

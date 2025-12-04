@@ -10,11 +10,14 @@ import { FixBottom } from "@/components/layout/fix-bottom";
 import { FixTop } from "@/components/layout/fix-top";
 import { Loading } from "@/components/loading";
 import { StepSummaryBar } from "@/components/step-summary-bar";
+import { useLoading } from "@/hooks/state";
 import { useHydration } from "@/hooks/use-hydration";
 
 export default function NewCheckPage() {
   const hydrated = useHydration();
-  if (!hydrated) return <Loading />;
+  const loading = useLoading();
+
+  if (!hydrated || loading) return <Loading />;
 
   return (
     <main className="h-screen w-screen">

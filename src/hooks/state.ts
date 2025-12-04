@@ -56,6 +56,8 @@ export const useUnitsPickerIsPresented = () =>
 
 export const useResults = () => useAppStore((state) => state.results);
 
+export const useLoading = () => useAppStore((state) => state.loading);
+
 export const useStepIsOmitted = () =>
   useAppStore((state) => state.omittedVariables.includes(state.step));
 

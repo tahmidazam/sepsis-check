@@ -248,6 +248,7 @@ export const createAppStore = (
             });
 
           const finish = () => {
+            set({ loading: true });
             const id = uuidv4();
 
             set((state) => {
@@ -269,6 +270,7 @@ export const createAppStore = (
             });
 
             get().actions.reset();
+            set({ loading: false });
 
             return id;
           };
