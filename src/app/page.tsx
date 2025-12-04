@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { NewCheckButton } from "@/components/buttons/new-check";
 import { InstallPrompt } from "@/components/install-prompt";
 import { ButtonArray } from "@/components/layout/button-array";
@@ -24,6 +25,17 @@ export default function Home() {
 
       <SafeAreaContentWrapper paddingTop="60px" paddingBottom="64px">
         <InstallPrompt />
+
+        <p className="px-4 pt-4 mx-auto max-w-lg">
+          SepsisCheck is a mobile implementation of the Phoenix Sepsis Score and
+          Criteria
+          <Link href="#schlapbachInternationalConsensusCriteria2024b">
+            <sup className="underline underline-offset-4 decoration-border">
+              [1]
+            </sup>
+          </Link>
+          , designed to aid sepsis and septic shock diagnostics in children.
+        </p>
 
         <ResultsTable className="pt-4" />
 
